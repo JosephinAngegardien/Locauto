@@ -12,10 +12,18 @@ class GeneralController extends AbstractController
      */
     public function accueil()
     {
-        return $this->render('accueil.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
+        return $this->render('accueil.html.twig');
     }
+
+    /**
+     * @Route("/deuxieme", name="deuxieme")
+     */
+    public function deuxiemePage()
+    {
+        return $this->render('pages/deuxieme.html.twig');
+    }
+
+
 }
 
 
