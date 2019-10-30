@@ -36,6 +36,12 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @var string le token qui servira lors de l'oubli de mot de passe
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $resetToken;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Location", mappedBy="user", orphanRemoval=true)
      */
     private $locations;
@@ -153,4 +159,25 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getResetToken(): string
+    {
+        return $this->resetToken;
+    }
+ 
+    /**
+     * @param string $resetToken
+     */
+    public function setResetToken(?string $resetToken): void
+    {
+        $this->resetToken = $resetToken;
+    }
+
+
 }
+
+
+
