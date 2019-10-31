@@ -1,5 +1,7 @@
-body{
-    background-color: rgb(67, 170, 63);
+.section1{
+    /* background-image: url("/images/voiture1.jpg"); */
+    background-color: burlywood;
+    height: 60vh;
 }
 
 
