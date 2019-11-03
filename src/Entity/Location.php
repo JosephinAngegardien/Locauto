@@ -27,16 +27,20 @@ class Location
     private $fin;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="locations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Particulier", inversedBy="locations")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user;
+    private $particulier;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Voiture", inversedBy="locations")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $voiture;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Professionnel", inversedBy="locations")
+     */
+    private $professionnel;
 
     public function getId(): ?int
     {
@@ -67,14 +71,14 @@ class Location
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getParticulier(): ?Particulier
     {
-        return $this->user;
+        return $this->particulier;
     }
 
-    public function setUser(?User $user): self
+    public function setParticulier(?Particulier $particulier): self
     {
-        $this->user = $user;
+        $this->particulier = $particulier;
 
         return $this;
     }
@@ -87,6 +91,18 @@ class Location
     public function setVoiture(?Voiture $voiture): self
     {
         $this->voiture = $voiture;
+
+        return $this;
+    }
+
+    public function getProfessionnel(): ?Professionnel
+    {
+        return $this->professionnel;
+    }
+
+    public function setProfessionnel(?Professionnel $professionnel): self
+    {
+        $this->professionnel = $professionnel;
 
         return $this;
     }

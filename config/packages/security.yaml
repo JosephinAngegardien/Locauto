@@ -1,26 +1,57 @@
 security:
     encoders:
-        App\Entity\User:
+        App\Entity\Particulier:
             algorithm: auto
+        App\Entity\Professionnel:
+            algorithm: auto
+
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
+        particulier_provider:
             entity:
-                class: App\Entity\User
+                class: App\Entity\Particulier
                 property: email
+        professionnel_provider:
+            entity:
+                class: App\Entity\Professionnel
+                property: siret
+        # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
+
+        particulier_security:
+            pattern: ^/particulier
             anonymous: true
+            provider: particulier_provider
             guard:
                 authenticators:
-                    - App\Security\LoginFormAuthenticator
+                    - App\Security\ParticulierAuthenticator
             logout:
-                path: deconnexion
+                path: deco_part
+                # where to redirect after logout
+                target: /
+        professionnel_security:
+            pattern: ^/professionnel
+            anonymous: true
+            provider: professionnel_provider
+            guard:
+                authenticators:
+                    - App\Security\ProfessionnelAuthenticator
+            logout:
+                path: deco_pro
+                # where to redirect after logout
+                target: /
+        # main:
+        #     anonymous: true
+        #     guard:
+        #         authenticators:
+        #             - App\Security\LoginFormAuthenticator
+        #     logout:
+        #         path: deconnexion
                 # where to redirect after logout
                 # target: app_any_route
 
