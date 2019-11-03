@@ -6,27 +6,19 @@
 {% block body %}
     
 {{ form_start(form) }}
-<form>
     <fieldset class="uk-fieldset">
+        <legend class="uk-legend">Enregistrement d'une voiture</legend>
 
-        <legend class="uk-legend">Legend</legend>
-
-        <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="Marque">
+        <div class="uk-input">
+            {{ form_row(form.marque) }} {# Relation dans l'entité → champ de saisie avec flèche #}
         </div>
-        <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="Modèle">
+        <div class="uk-input">
+            {{ form_row(form.modele) }}
         </div>
-        <div class="uk-margin">
-            <input class="uk-input" type="text" placeholder="Agence">
+        <div class="uk-input">
+            {{ form_row(form.agence) }} {# Relation dans l'entité → champ de saisie avec flèche #}
         </div>
-
-        <div class="">
-            <button type="submit" class="">Valider</button>
-        </div>
-
     </fieldset>
-</form>
 {{ form_end(form) }}
 
 {% endblock %}
