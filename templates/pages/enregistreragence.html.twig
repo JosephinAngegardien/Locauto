@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Enregistrer agence{% endblock %}
+
+{% block body %}
+    
+{{ form_start(form) }}
+    <fieldset class="uk-fieldset">
+        <legend class="uk-legend">Enregistrement d'une agence</legend>
+
+        <div class="uk-input">
+            {{ form_row(form.ville) }}
+        </div>
+
+    </fieldset>
+{{ form_end(form) }}
+
+{% endblock %}
+
+
+

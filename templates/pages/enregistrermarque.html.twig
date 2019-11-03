@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Enregistrer marque{% endblock %}
+
+{% block body %}
+    
+{{ form_start(form) }}
+    <fieldset class="uk-fieldset">
+        <legend class="uk-legend">Enregistrement d'une marque</legend>
+
+        <div class="uk-input">
+            {{ form_row(form.nom) }}
+        </div>
+
+    </fieldset>
+{{ form_end(form) }}
+
+{% endblock %}
+
+
+

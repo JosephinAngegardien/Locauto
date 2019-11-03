@@ -67,7 +67,7 @@ class VoitureController extends AbstractController
      */
     public function show(Voiture $voiture){
         return $this->render('voitures/voirvoiture.html.twig', [
-            'robot' => $robot
+            'voiture' => $voiture
         ]);
     }
 
