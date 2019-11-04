@@ -39,9 +39,15 @@ class Voiture
      */
     private $locations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Categorie", inversedBy="voitures")
+     */
+    private $categorie;
+
     public function __construct()
     {
         $this->locations = new ArrayCollection();
+        $this->categorie = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -111,6 +117,32 @@ class Voiture
             if ($location->getVoiture() === $this) {
                 $location->setVoiture(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Categorie[]
+     */
+    public function getCategorie(): Collection
+    {
+        return $this->categorie;
+    }
+
+    public function addCategorie(Categorie $categorie): self
+    {
+        if (!$this->categorie->contains($categorie)) {
+            $this->categorie[] = $categorie;
+        }
+
+        return $this;
+    }
+
+    public function removeCategorie(Categorie $categorie): self
+    {
+        if ($this->categorie->contains($categorie)) {
+            $this->categorie->removeElement($categorie);
         }
 
         return $this;

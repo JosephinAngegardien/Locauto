@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class Particulier implements UserInterface
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -47,7 +47,12 @@ class Particulier implements UserInterface
     private $locations;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true, nullable=true)
+     */
+    private $siret;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $prenom;
 
@@ -57,19 +62,10 @@ class Particulier implements UserInterface
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime")
      */
-    private $adresse;
+    private $createdAt;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $codepostal;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $ville;
 
     public function __construct()
     {
@@ -225,41 +221,30 @@ class Particulier implements UserInterface
         return $this;
     }
 
-    public function getAdresse(): ?string
+    public function getSiret(): ?string
     {
-        return $this->adresse;
+        return $this->siret;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setSiret(string $siret): self
     {
-        $this->adresse = $adresse;
+        $this->siret = $siret;
 
         return $this;
     }
 
-    public function getCodepostal(): ?string
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->codepostal;
+        return $this->createdAt;
     }
 
-    public function setCodepostal(string $codepostal): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->codepostal = $codepostal;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getVille(): ?string
-    {
-        return $this->ville;
-    }
-
-    public function setVille(string $ville): self
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
 
 
 }

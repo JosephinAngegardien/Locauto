@@ -1,59 +1,44 @@
 security:
     encoders:
-        App\Entity\Particulier:
-            algorithm: auto
-        App\Entity\Professionnel:
+        App\Entity\User:
             algorithm: auto
 
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
-        particulier_provider:
+        user_provider:
             entity:
-                class: App\Entity\Particulier
+                class: App\Entity\User
                 property: email
-        professionnel_provider:
-            entity:
-                class: App\Entity\Professionnel
-                property: siret
+
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        particulier_security:
-            pattern: ^/particulier
+        user_security:
+            # pattern: ^/user
             anonymous: true
-            provider: particulier_provider
+            provider: user_provider
             guard:
                 authenticators:
-                    - App\Security\ParticulierAuthenticator
+                    - App\Security\UserAuthenticator
             logout:
-                path: deco_part
+                path: logout
                 # where to redirect after logout
                 target: /
-        professionnel_security:
-            pattern: ^/professionnel
-            anonymous: true
-            provider: professionnel_provider
-            guard:
-                authenticators:
-                    - App\Security\ProfessionnelAuthenticator
-            logout:
-                path: deco_pro
-                # where to redirect after logout
-                target: /
+
         # main:
         #     anonymous: true
         #     guard:
         #         authenticators:
         #             - App\Security\LoginFormAuthenticator
         #     logout:
-        #         path: deconnexion
+        #         path: logout
                 # where to redirect after logout
-                # target: app_any_route
+                # target: /
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -66,3 +51,8 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER]
+
+

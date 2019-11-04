@@ -21,13 +21,13 @@ class GeneralController extends AbstractController
         return $this->render('accueil.html.twig');
     }
 
-    /**
-     * @Route("/deuxieme", name="deuxieme")
-     */
-    public function deuxiemePage()
-    {
-        return $this->render('pages/deuxieme.html.twig');
-    }
+    // /**
+    //  * @Route("/deuxieme", name="deuxieme")
+    //  */
+    // public function deuxiemePage()
+    // {
+    //     return $this->render('pages/deuxieme.html.twig');
+    // }
 
     /**
      * @Route("/enregistreragence", name="enregistrer_agence")
@@ -48,7 +48,7 @@ class GeneralController extends AbstractController
                 "L'agence de {$agence->getVille()} a bien été enregistrée !"
             );
 
-            return $this->redirectToRoute('deuxieme');
+            return $this->redirectToRoute('accueil');
         }
 
         return $this->render('/pages/enregistreragence.html.twig', [
@@ -75,7 +75,7 @@ class GeneralController extends AbstractController
                 "La marque {$marque->getNom()} a bien été enregistrée !"
             );
 
-            return $this->redirectToRoute('deuxieme');
+            return $this->redirectToRoute('accueil');
         }
 
         return $this->render('/pages/enregistrermarque.html.twig', [

@@ -2,8 +2,25 @@
 
 {% block title %}Page d'accueil{% endblock %}
 
-
-
+{% block navigation %}
+<nav class="uk-navbar-container" uk-navbar>
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="{{path ("register")}}">Inscription</a></li>
+            {% if app.user %}
+            <li class="uk-parent"><a href="{{path ("logout")}}">Deconnexion</a></li>
+            {% else %}
+            <li class="uk-parent"><a href="{{path ("login")}}">Connexion</a></li>
+            {% endif %}
+            {% if is_granted ("ROLE_ADMIN") %}
+            <li><a href="{{path ("enregistrer_agence")}}">Ajouter une agence</a></li>
+            <li><a href="{{path ("enregistrer_voiture")}}">Enregistrer une voiture</a></li>
+            <li><a href="{{path ("enregistrer_marque")}}">Enregistrer une marque</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+{% endblock %}
 
 {% block body %}
 

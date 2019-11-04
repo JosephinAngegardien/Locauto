@@ -2,6 +2,17 @@
 
 {% block title %}Log in!{% endblock %}
 
+        {% block navigation %}
+        <nav class="uk-navbar-container" uk-navbar>
+            <div class="uk-navbar-left">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-parent"><a href="{{path ("register")}}">Inscription</a></li>
+                    <li class="uk-active"><a href="{{path ("login")}}">Connexion</a></li>
+                </ul>
+            </div>
+        </nav>
+        {% endblock %}
+
 {% block body %}
 <form method="post">
     {% if error %}
@@ -10,7 +21,7 @@
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('deconnexion') }}">Logout</a>
+            You are logged in as {{ app.user.username }}, <a href="{{ path('logout') }}">Logout</a>
         </div>
     {% endif %}
 
