@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\ModifprofilType;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -50,35 +51,41 @@ class SecurityController extends AbstractController
      */
     public function registerPart(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $passwordEncoder): Response
     {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);      //On relie les champs du formulaire aux champs de l'utilisateur.
-        $form->handleRequest($request);
+        if($this->getUser() == null){
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-                $passwordEncoder->encodePassword(
-                    $user,
-                    $form->get('password')->getData()
-                )
-            );
+            $user = new User();
+            $form = $this->createForm(UserType::class, $user);      //On relie les champs du formulaire aux champs de l'utilisateur.
+            $form->handleRequest($request);
 
-            $user->setRoles(["ROLE_USER"]);
-            // $user->setRoles(["ROLE_ADMIN"]);
+            if ($form->isSubmitted() && $form->isValid()) {
+                // encode the plain password
+                $user->setPassword(
+                    $passwordEncoder->encodePassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+                $user->setRoles(["ROLE_USER"]);
+                // $user->setRoles(["ROLE_ADMIN"]);
 
-            // do anything else you need here, like send an email
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
 
-            return $this->redirectToRoute("login");
+                // do anything else you need here, like send an email
 
+                return $this->redirectToRoute("login");
+
+            }
+
+            return $this->render('security/register.html.twig', [
+                'registrationForm' => $form->createView(),
+            ]);
         }
 
-        return $this->render('security/register.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
+        return $this->redirectToRoute('accueil');
+
     }
 
     /**

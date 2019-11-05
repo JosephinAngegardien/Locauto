@@ -21,25 +21,41 @@
             <div class="uk-navbar-left">
                 <ul class="uk-navbar-nav">
                     {% if app.user %}
-                    <li class="uk-parent"><a href="{{path ("register")}}">Inscription</a></li>
                     <li class="uk-active"><a href="{{path ("logout")}}">Deconnexion</a></li>
+                    <li class="uk-parent"><a href="{{path ("modif_profil")}}">Modifier mon profil</a></li>
                     {% else %}
                     <li class="uk-active"><a href="{{path ("register")}}">Inscription</a></li>
                     <li class="uk-parent"><a href="{{path ("login")}}">Connexion</a></li>
                     {% endif %}
-                    {% if is_granted ("ROLE_ADMIN") %}
-                    <li><a href="{{path ("enregistrer_agence")}}">Ajouter une agence</a></li>
-                    <li><a href="{{path ("enregistrer_voiture")}}">Enregistrer une voiture</a></li>
-                    <li><a href="{{path ("enregistrer_marque")}}">Enregistrer une marque</a></li>
-                    {% endif %}
                 </ul>
+                    {% if is_granted ("ROLE_ADMIN") %}
+                    <button class="uk-button uk-button-default" type="button">admin</button>
+                    <div uk-dropdown>
+                        <ul class="uk-nav uk-dropdown-nav">
+                            <li><a href="{{path ("liste_agences")}}">Liste des agences</a></li>
+                            <li><a href="{{path ("enregistrer_agence")}}">Ajouter une agence</a></li>
+                            <li><a href="{{path ("liste_marques")}}">Liste des marques</a></li>
+                            <li><a href="{{path ("enregistrer_marque")}}">Ajouter une marque</a></li>
+                            <li><a href="{{path ("enregistrer_voiture")}}">Enregistrer une voiture</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
             </div>
         </nav>
         {% endblock %}
 
-        {% block body %}{% endblock %}
+        {% block body %}
+        <div class="uk-height-large uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" data-src="https://www.lerevenu.com/sites/site/files/styles/img_lg/public/field/image/bugatti.jpg?itok=MKE31XFL" uk-img>
+            <h1>Locauto</h1>
+            <a href="{{path ("liste_voitures")}}">Nos voitures</a>
+        </div>
+        {% endblock %}
 
         </section>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
+
+
+
+

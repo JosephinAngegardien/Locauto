@@ -4,6 +4,7 @@
 {% block title %}Liste agences{% endblock %}
 
 {% block body %}
+{{ parent() }}
 <h1>Agences</h1>
 <section>
     {% for agence in agences %}

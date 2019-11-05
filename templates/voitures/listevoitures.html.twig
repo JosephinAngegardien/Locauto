@@ -4,6 +4,7 @@
 {% block title %}Liste voitures{% endblock %}
 
 {% block body %}
+{{ parent() }}
 <h1>Nos voitures</h1>
 <section>
     {% for voiture in voitures %}
