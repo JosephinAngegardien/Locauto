@@ -61,10 +61,10 @@ class User implements UserInterface
      */
     private $nom;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
+    // /**
+    //  * @ORM\Column(type="datetime")
+    //  */
+    // private $createdAt;
 
 
     public function __construct()

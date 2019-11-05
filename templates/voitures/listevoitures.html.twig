@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Liste voitures{% endblock %}
+
+{% block body %}
+<h1>Nos voitures</h1>
+<section>
+    {% for voiture in voitures %}
+        <div>{{ voiture.modele|e }}</div>
+        {% if is_granted ("ROLE_ADMIN") %}
+        {# <div><a class="" href="{{ path ("modif_marque",{'id':marque.id}) }}">Modifier</a></div> #}
+        <div><a class="" href="{{ path ("supprimer_voiture",{'id':voiture.id}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a></div>
+        {% endif %}
+        <div><a class="" href="{{ path ("voir_voiture",{'id':voiture.id}) }}">Voir cette voiture</a></div>
+    {% endfor %}
+</section>
+{% endblock %}
+
+
+

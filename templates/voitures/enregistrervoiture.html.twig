@@ -9,15 +9,17 @@
     <fieldset class="uk-fieldset">
         <legend class="uk-legend">Enregistrement d'une voiture</legend>
 
+         <div class="uk-input">
+            {{ form_row(form.agence) }} {# Relation dans l'entité → champ de saisie avec flèche #}
+        </div>
         <div class="uk-input">
             {{ form_row(form.marque) }} {# Relation dans l'entité → champ de saisie avec flèche #}
         </div>
         <div class="uk-input">
             {{ form_row(form.modele) }}
         </div>
-        <div class="uk-input">
-            {{ form_row(form.agence) }} {# Relation dans l'entité → champ de saisie avec flèche #}
-        </div>
+       
+        <button class="">Enregistrement</button>
     </fieldset>
 {{ form_end(form) }}
 

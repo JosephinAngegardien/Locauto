@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Voiture{% endblock %}
+
+{% block body %}
+
+<section>
+<h1>{{ voiture.modele }}</h1>
+<p>Véhicule de marque {{ voiture.marque }}</p>
+<p>Disponible dans notre agence de {{ voiture.agence }}</p>
+</section>
+
+{% endblock %}
+
+

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Liste marques{% endblock %}
+
+{% block body %}
+<h1>Marques</h1>
+<section>
+    {% for marque in marques %}
+        <div>{{ marque.nom|e }}</div>
+        {# <div><a class="" href="{{ path ("modif_marque",{'id':marque.id}) }}">Modifier</a></div> #}
+        <div><a class="" href="{{ path ("supprimer_marque",{'id':marque.id}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a></div>
+    {% endfor %}
+</section>
+{% endblock %}
+

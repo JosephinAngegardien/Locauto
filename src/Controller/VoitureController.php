@@ -13,25 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class VoitureController extends AbstractController
 {
-    // /**
-    //  * @Route("/robots/liste", name="liste_robots")
-    //  */
-    // public function listeRobots()
-    // {
-    //     return $this->render('robots/liste.html.twig', [
-    //         'controller_name' => 'RobotsController',
-    //     ]);
-    // }
-
-    // /**
-    //  * @Route("/admin/listerobots", name="admin_liste_robots")
-    //  */
-    // public function adminListeRobots()
-    // {
-    //     return $this->render('admin/listerobots.html.twig', [
-    //         'controller_name' => 'RobotsController',
-    //     ]);
-    // }
 
     /**
      * @Route("/enregistrervoiture", name="enregistrer_voiture")
@@ -52,7 +33,7 @@ class VoitureController extends AbstractController
                 "Le modèle {$voiture->getModele()} a bien été enregistré !"
             );
 
-            return $this->redirectToRoute('voirvoiture');
+            return $this->redirectToRoute('liste_voitures');
         }
 
         return $this->render('/voitures/enregistrervoiture.html.twig', [
@@ -61,7 +42,7 @@ class VoitureController extends AbstractController
     }
 
     /**
-     * @Route("/voirvoiture", name="voir_voiture")
+     * @Route("/voirvoiture/{id}", name="voir_voiture")
      * 
      * @return Response
      */
@@ -70,5 +51,30 @@ class VoitureController extends AbstractController
             'voiture' => $voiture
         ]);
     }
+
+    /**
+     * @Route("/listevoitures", name="liste_voitures")
+     */
+    public function listeVoitures() {
+
+        $voitures = $this->getDoctrine()->getRepository(Voiture::class)->findAll();
+
+        return $this->render('/voitures/listevoitures.html.twig', ['voitures' => $voitures]);
+    }
+
+    /**
+     * @Route("/supprimervoiture/{id}", name="supprimer_voiture")
+     */
+    public function supprVoiture(Voiture $voiture, ObjectManager $manager) {
+
+        $manager->remove($voiture);
+        $manager->flush();
+  
+        return $this->redirectToRoute('liste_voitures');
+    }
+
+    // Modifier voiture
+
+
 
 }

@@ -21,14 +21,6 @@ class GeneralController extends AbstractController
         return $this->render('accueil.html.twig');
     }
 
-    // /**
-    //  * @Route("/deuxieme", name="deuxieme")
-    //  */
-    // public function deuxiemePage()
-    // {
-    //     return $this->render('pages/deuxieme.html.twig');
-    // }
-
     /**
      * @Route("/enregistreragence", name="enregistrer_agence")
      */
@@ -48,12 +40,33 @@ class GeneralController extends AbstractController
                 "L'agence de {$agence->getVille()} a bien été enregistrée !"
             );
 
-            return $this->redirectToRoute('accueil');
+            return $this->redirectToRoute('liste_agences');
         }
 
         return $this->render('/pages/enregistreragence.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/listeagences", name="liste_agences")
+     */
+    public function listeAgences() {
+
+        $agences = $this->getDoctrine()->getRepository(Agence::class)->findAll();
+
+        return $this->render('/pages/listeagences.html.twig', ['agences' => $agences]);
+    }
+
+    /**
+     * @Route("/supprimeragence/{id}", name="supprimer_agence")
+     */
+    public function supprAgence(Agence $agence, ObjectManager $manager) {
+
+        $manager->remove($agence);
+        $manager->flush();
+  
+        return $this->redirectToRoute('liste_agences');
     }
 
     /**
@@ -75,12 +88,33 @@ class GeneralController extends AbstractController
                 "La marque {$marque->getNom()} a bien été enregistrée !"
             );
 
-            return $this->redirectToRoute('accueil');
+            return $this->redirectToRoute('liste_marques');
         }
 
         return $this->render('/pages/enregistrermarque.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/listemarques", name="liste_marques")
+     */
+    public function listeMarques() {
+
+        $marques = $this->getDoctrine()->getRepository(Marque::class)->findAll();
+
+        return $this->render('/pages/listemarques.html.twig', ['marques' => $marques]);
+    }
+
+    /**
+     * @Route("/supprimermarque/{id}", name="supprimer_marque")
+     */
+    public function supprMarque(Marque $marque, ObjectManager $manager) {
+
+        $manager->remove($marque);
+        $manager->flush();
+  
+        return $this->redirectToRoute('liste_marques');
     }
 
 

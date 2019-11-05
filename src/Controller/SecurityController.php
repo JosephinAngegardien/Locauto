@@ -63,8 +63,8 @@ class SecurityController extends AbstractController
                 )
             );
 
-            // $user->setRoles(["ROLE_USER"]);
-            $user->setRoles(["ROLE_ADMIN"]);
+            $user->setRoles(["ROLE_USER"]);
+            // $user->setRoles(["ROLE_ADMIN"]);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -81,7 +81,24 @@ class SecurityController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/modifprofil", name="modif_profil")
+     */
+    public function modifierProfil(Request $request, ObjectManager $manager){
+        
+        $user=$this->getUser();
+        $form=$this->createForm(ModifprofilType::class, $user);
+        $form->handleRequest($request);
 
+        if($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($user);
+            $manager->flush();
+
+            return $this->redirectToRoute('accueil', ['id' => $user->getID()]);
+        }
+
+        return $this->render('security/modifprofil.html.twig', ['registrationForm' => $form->createView()]);
+    }
 
 
 }

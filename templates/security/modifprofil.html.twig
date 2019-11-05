@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier profil{% endblock %}
+
+{% block body %}
+
+    <section class="">
+        <div class=""><h1>Modifier mon profil</h1></div>
+
+        <div>
+        {{ form_start(registrationForm) }}
+        <table>
+            <tr>
+                {# <td>{{ form_row(registrationForm.email) }}</td> #}
+                <td>{{ form_label(registrationForm.email, "Courriel") }}</td>
+                <td>{{ form_widget(registrationForm.email) }}</td>
+            </tr>
+            <tr>
+                {# <td>{{ form_row(registrationForm.email) }}</td> #}
+                <td>{{ form_label(registrationForm.nom, "Nom") }}</td>
+                <td>{{ form_widget(registrationForm.nom) }}</td>
+            </tr>
+        </table>
+
+        <button class="">Enregistrement</button>
+
+        {{ form_end(registrationForm) }}
+        </div>
+    </section>
+
+{% endblock %}
+
+
+

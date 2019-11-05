@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Liste agences{% endblock %}
+
+{% block body %}
+<h1>Agences</h1>
+<section>
+    {% for agence in agences %}
+        <div>{{ agence.ville|e }}</div>
+        {# <div><a class="" href="{{ path ("modif_agence",{'id':agence.id}) }}">Modifier</a></div> #}
+        <div><a class="" href="{{ path ("supprimer_agence",{'id':agence.id}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a></div>
+    {% endfor %}
+</section>
+{% endblock %}
+
