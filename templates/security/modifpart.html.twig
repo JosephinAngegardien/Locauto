@@ -17,8 +17,18 @@
             </tr>
             <tr>
                 {# <td>{{ form_row(registrationForm.email) }}</td> #}
+                <td>{{ form_label(registrationForm.prenom, "Prénom") }}</td>
+                <td>{{ form_widget(registrationForm.prenom) }}</td>
+            </tr>
+            <tr>
+                {# <td>{{ form_row(registrationForm.email) }}</td> #}
                 <td>{{ form_label(registrationForm.nom, "Nom") }}</td>
                 <td>{{ form_widget(registrationForm.nom) }}</td>
+            </tr>
+            <tr>
+                {# <td>{{ form_row(registrationForm.email) }}</td> #}
+                <td>{{ form_label(registrationForm.username, "Pseudonyme") }}</td>
+                <td>{{ form_widget(registrationForm.username) }}</td>
             </tr>
         </table>
 

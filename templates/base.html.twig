@@ -18,13 +18,24 @@
 
         {% block navigation %}
         <nav class="uk-navbar-container" uk-navbar>
-            <div class="uk-navbar-left">
+            <div class="uk-navbar-right">
                 <ul class="uk-navbar-nav">
                     {% if app.user %}
                     <li class="uk-active"><a href="{{path ("logout")}}">Deconnexion</a></li>
-                    <li class="uk-parent"><a href="{{path ("modif_profil")}}">Modifier mon profil</a></li>
+                        {% if is_granted ("ROLE_PARTICULIER") %}
+                        <li class="uk-parent"><a href="{{path ("modif_part")}}">Modifier mon profil</a></li>
+                        {% endif %}
+                        {% if is_granted ("ROLE_PROFESSIONNEL") %}      {# ... and not granted admin #}
+                        <li class="uk-parent"><a href="{{path ("modif_pro")}}">Modifier le profil</a></li>
+                        {% endif %}
                     {% else %}
-                    <li class="uk-active"><a href="{{path ("register")}}">Inscription</a></li>
+                    <button class="uk-button uk-button-default" type="button">Inscription</button>
+                    <div uk-dropdown>
+                        <ul class="uk-nav uk-dropdown-nav">
+                            <li class="uk-active"><a href="{{path ("register_part")}}">Inscription particulier</a></li>
+                            <li class="uk-active"><a href="{{path ("register_pro")}}">Inscription professionnel</a></li>
+                        </ul>
+                    </div>
                     <li class="uk-parent"><a href="{{path ("login")}}">Connexion</a></li>
                     {% endif %}
                 </ul>

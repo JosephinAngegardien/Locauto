@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+    <section class="">
+        <div class=""><h1>Inscription</h1></div>
+
+        <div>
+        {{ form_start(registrationForm) }}
+        <table>
+            <tr>
+                {# <td>{{ form_row(registrationForm.email) }}</td> #}
+                <td>{{ form_label(registrationForm.email, "Courriel") }}</td>
+                <td>{{ form_widget(registrationForm.email) }}</td>
+            </tr>
+            <tr>
+                {# <td>{{ form_row(registrationForm.email) }}</td> #}
+                <td>{{ form_label(registrationForm.siret, "Numéro siret") }}</td>
+                <td>{{ form_widget(registrationForm.siret) }}</td>
+            </tr>
+            <tr>
+                {# <td>{{ form_row(registrationForm.email) }}</td> #}
+                <td>{{ form_label(registrationForm.raisonsociale, "Raison sociale") }}</td>
+                <td>{{ form_widget(registrationForm.raisonsociale) }}</td>
+            </tr>
+            <tr>
+                {# <td>{{ form_row(registrationForm.email) }}</td> #}
+                <td>{{ form_label(registrationForm.username, "Pseudonyme") }}</td>
+                <td>{{ form_widget(registrationForm.username) }}</td>
+            </tr>
+            <tr>
+                {# <td>{{ form_row(registrationForm.password.first, "Mot de passe (au moins huit caractères) ") }}</td> #}
+                <td>{{ form_label(registrationForm.password.first, "Mot de passe (au moins huit caractères) ") }}</td>
+                <td>{{ form_widget(registrationForm.password.first) }}</td>
+            </tr>
+            <tr>
+                {# <td>{{ form_row(registrationForm.password.second, "Confirmation du mot de passe ") }}</td> #}
+                <td>{{ form_label(registrationForm.password.second, "Confirmation du mot de passe ") }}</td>
+                <td>{{ form_widget(registrationForm.password.second) }}</td>
+            </tr>
+        </table>
+
+        <button class="">Enregistrement</button>
+
+        {{ form_end(registrationForm) }}
+        </div>
+    </section>
+
+{% endblock %}
+
+
+

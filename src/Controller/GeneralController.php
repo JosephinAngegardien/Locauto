@@ -9,6 +9,7 @@ use App\Form\MarqueType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GeneralController extends AbstractController
@@ -23,6 +24,7 @@ class GeneralController extends AbstractController
 
     /**
      * @Route("/enregistreragence", name="enregistrer_agence")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function enregistrerAgence(Request $request, ObjectManager $manager)
     {
@@ -60,6 +62,7 @@ class GeneralController extends AbstractController
 
     /**
      * @Route("/supprimeragence/{id}", name="supprimer_agence")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function supprAgence(Agence $agence, ObjectManager $manager) {
 
@@ -71,6 +74,7 @@ class GeneralController extends AbstractController
 
     /**
      * @Route("/enregistrermarque", name="enregistrer_marque")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function enregistrerMarque(Request $request, ObjectManager $manager)
     {
@@ -108,6 +112,7 @@ class GeneralController extends AbstractController
 
     /**
      * @Route("/supprimermarque/{id}", name="supprimer_marque")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function supprMarque(Marque $marque, ObjectManager $manager) {
 
