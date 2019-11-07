@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Voiture{% endblock %}
+{% block title %}{{ parent() }} : voiture{% endblock %}
 
 {% block body %}
 {{ parent() }}
@@ -9,7 +9,12 @@
 <section>
 <h1>{{ voiture.modele }}</h1>
 <p>Véhicule de marque {{ voiture.marque }}</p>
+<p>Type(s) de véhicule :</p>
+{% for cat in voiture.categories %}
+     <p> - {{ cat }}</p>
+{% endfor %}
 <p>Disponible dans notre agence de {{ voiture.agence }}</p>
+<p>Tarif : {{ voiture.tarif }} € par jour</p>
 </section>
 
 {% endblock %}

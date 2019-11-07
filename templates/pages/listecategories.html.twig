@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{ parent() }} : liste catégories{% endblock %}
+
+{% block body %}
+{{ parent() }}
+<h1>Catégories de véhicules</h1>
+<section>
+    {% for categorie in categories %}
+        <div>{{ categorie.nom|e }}</div>
+        {# <div><a class="" href="{{ path ("modif_marque",{'id':marque.id}) }}">Modifier</a></div> #}
+        <div><a class="" href="{{ path ("supprimer_categorie",{'id':categorie.id}) }}" onclick="confirm('Supprimer ?')">Supprimer</a></div>
+    {% endfor %}
+</section>
+{% endblock %}
+

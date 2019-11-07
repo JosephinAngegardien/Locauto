@@ -87,8 +87,8 @@ class SecurityController extends AbstractController
                     )
                 );
 
-                // $user->setRoles(["ROLE_USER", "ROLE_PARTICULIER"]);
-                $user->setRoles(["ROLE_ADMIN"]);
+                $user->setRoles(["ROLE_USER", "ROLE_PARTICULIER"]);
+                // $user->setRoles(["ROLE_ADMIN"]);
 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($user);

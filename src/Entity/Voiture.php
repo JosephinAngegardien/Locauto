@@ -42,12 +42,28 @@ class Voiture
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Categorie", inversedBy="voitures")
      */
-    private $categorie;
+    private $categories;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $reference;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $tarif;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\image", mappedBy="voiture")
+     */
+    private $images;
 
     public function __construct()
     {
         $this->locations = new ArrayCollection();
-        $this->categorie = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,15 +141,15 @@ class Voiture
     /**
      * @return Collection|Categorie[]
      */
-    public function getCategorie(): Collection
+    public function getCategories(): Collection
     {
-        return $this->categorie;
+        return $this->categories;
     }
 
     public function addCategorie(Categorie $categorie): self
     {
-        if (!$this->categorie->contains($categorie)) {
-            $this->categorie[] = $categorie;
+        if (!$this->categories->contains($categorie)) {
+            $this->categories[] = $categorie;
         }
 
         return $this;
@@ -141,8 +157,63 @@ class Voiture
 
     public function removeCategorie(Categorie $categorie): self
     {
-        if ($this->categorie->contains($categorie)) {
-            $this->categorie->removeElement($categorie);
+        if ($this->categories->contains($categorie)) {
+            $this->categories->removeElement($categorie);
+        }
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getTarif(): ?int
+    {
+        return $this->tarif;
+    }
+
+    public function setTarif(?int $tarif): self
+    {
+        $this->tarif = $tarif;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setVoiture($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getVoiture() === $this) {
+                $image->setVoiture(null);
+            }
         }
 
         return $this;

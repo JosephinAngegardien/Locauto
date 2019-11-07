@@ -36,6 +36,11 @@ class Image
      */
     private $alaune;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Voiture", inversedBy="images")
+     */
+    private $voiture;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +90,18 @@ class Image
     public function setAlaune(?bool $alaune): self
     {
         $this->alaune = $alaune;
+
+        return $this;
+    }
+
+    public function getVoiture(): ?Voiture
+    {
+        return $this->voiture;
+    }
+
+    public function setVoiture(?Voiture $voiture): self
+    {
+        $this->voiture = $voiture;
 
         return $this;
     }

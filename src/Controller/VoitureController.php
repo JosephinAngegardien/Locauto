@@ -16,6 +16,7 @@ class VoitureController extends AbstractController
 
     /**
      * @Route("/enregistrervoiture", name="enregistrer_voiture")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function enregistrerVoiture(Request $request, ObjectManager $manager)
     {
@@ -64,6 +65,7 @@ class VoitureController extends AbstractController
 
     /**
      * @Route("/supprimervoiture/{id}", name="supprimer_voiture")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function supprVoiture(Voiture $voiture, ObjectManager $manager) {
 

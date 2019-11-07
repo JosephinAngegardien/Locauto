@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Enregistrer marque{% endblock %}
+{% block title %}{{ parent() }} : enregistrer marque{% endblock %}
 
 {% block body %}
 {{ parent() }}
@@ -12,8 +12,9 @@
 
         <div class="uk-input">
             {{ form_row(form.nom) }}
+            <button class="uk-button uk-button-primary">Enregistrement</button>
         </div>
-        <button class="">Enregistrement</button>
+        
     </fieldset>
 {{ form_end(form) }}
 

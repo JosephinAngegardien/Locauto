@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Enregistrer voiture{% endblock %}
+{% block title %}{{ parent() }} : enregistrer voiture{% endblock %}
 
 {% block body %}
 {{ parent() }}
@@ -11,16 +11,14 @@
         <legend class="uk-legend">Enregistrement d'une voiture</legend>
 
          <div class="uk-input">
-            {{ form_row(form.agence) }} {# Relation dans l'entité → champ de saisie avec flèche #}
-        </div>
-        <div class="uk-input">
-            {{ form_row(form.marque) }} {# Relation dans l'entité → champ de saisie avec flèche #}
-        </div>
-        <div class="uk-input">
+            {{ form_row(form.agence) }} 
+            {{ form_row(form.marque) }} 
             {{ form_row(form.modele) }}
+            {{ form_row(form.categories) }}
+            {{ form_row(form.reference) }}
+            {{ form_row(form.tarif) }}
+            <button class="uk-button uk-button-primary">Enregistrement</button>
         </div>
-       
-        <button class="">Enregistrement</button>
     </fieldset>
 {{ form_end(form) }}
 

@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}{{ parent() }} : enregistrer agence{% endblock %}
+{% block title %}{{ parent() }} : enregistrer catégorie{% endblock %}
 
 {% block body %}
 {{ parent() }}
     
 {{ form_start(form) }}
     <fieldset class="uk-fieldset">
-        <legend class="uk-legend">Enregistrement d'une agence</legend>
+        <legend class="uk-legend">Enregistrement d'une catégorie</legend>
 
         <div class="uk-input">
-            {{ form_row(form.ville) }}
+            {{ form_row(form.nom) }}
             <button class="uk-button uk-button-primary">Enregistrement</button>
         </div>
         

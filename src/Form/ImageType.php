@@ -2,24 +2,27 @@
 
 namespace App\Form;
 
-use App\Entity\Categorie;
+use App\Entity\Image;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CategorieFormType extends AbstractType
+class ImageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('nom')
+            ->add('legende')
+            ->add('url')
+            // ->add('alaune')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Categorie::class,
+            'data_class' => Image::class,
         ]);
     }
 }

@@ -2,57 +2,67 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Locauto{% endblock %}</title>
         
         {% block stylesheets %}
-{# <link rel="stylesheet" href="css/style.css" /> #}
         <!-- UIkit CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/css/uikit.min.css" />
+        {# Mon CSS #}
+<link rel="stylesheet" href="css/style.css" />
         <!-- UIkit JS -->
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit-icons.min.js"></script>
+        {# Mon JS #}
+<script src="js/monjs.js"></script>
         {% endblock %}
     </head>
     <body>
         <section class="section1">
 
         {% block navigation %}
-        <nav class="uk-navbar-container" uk-navbar>
-            <div class="uk-navbar-right">
-                <ul class="uk-navbar-nav">
-                    {% if app.user %}
-                    <li class="uk-active"><a href="{{path ("logout")}}">Deconnexion</a></li>
-                        {% if is_granted ("ROLE_PARTICULIER") %}
-                        <li class="uk-parent"><a href="{{path ("modif_part")}}">Modifier mon profil</a></li>
+        <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+            <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <li><a class="uk-link-muted" href="{{path ("accueil")}}">accueil</a></li>
+                        {% if app.user %}
+                        <li class="uk-active"><a href="{{path ("logout")}}">Deconnexion</a></li>
+                            {% if is_granted ("ROLE_PARTICULIER") %}
+                            <li class="uk-parent"><a href="{{path ("modif_part")}}">Modifier mon profil</a></li>
+                            {% endif %}
+                            {% if is_granted ("ROLE_PROFESSIONNEL") and is_granted ('ROLE_ADMIN') == false %}
+                            <li class="uk-parent"><a href="{{path ("modif_pro")}}">Modifier le profil</a></li>
+                            {% endif %}
+                        {% else %}
+                        <button class="uk-button uk-button-default" type="button">Inscription</button>
+                        <div uk-dropdown>
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li class="uk-active"><a href="{{path ("register_part")}}">Inscription particulier</a></li>
+                                <li class="uk-active"><a href="{{path ("register_pro")}}">Inscription professionnel</a></li>
+                            </ul>
+                        </div>
+                        <li class="uk-parent"><a href="{{path ("login")}}">Connexion</a></li>
                         {% endif %}
-                        {% if is_granted ("ROLE_PROFESSIONNEL") %}      {# ... and not granted admin #}
-                        <li class="uk-parent"><a href="{{path ("modif_pro")}}">Modifier le profil</a></li>
+                    </ul>
+                        {% if is_granted ("ROLE_ADMIN") %}
+                        <button class="uk-button uk-button-default" type="button">admin</button>
+                        <div uk-dropdown>
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li><a href="{{path ("liste_agences")}}">Liste des agences</a></li>
+                                <li><a href="{{path ("enregistrer_agence")}}">Ajouter une agence</a></li>
+                                <li><a href="{{path ("liste_marques")}}">Liste des marques</a></li>
+                                <li><a href="{{path ("enregistrer_marque")}}">Ajouter une marque</a></li>
+                                <li><a href="{{path ("liste_images")}}">Images disponibles</a></li>
+                                <li><a href="{{path ("enregistrer_image")}}">Ajouter une image</a></li>
+                                <li><a href="{{path ("liste_categories")}}">Liste des catégories</a></li>
+                                <li><a href="{{path ("enregistrer_categorie")}}">Ajouter une catégorie</a></li>
+                                <li><a href="{{path ("enregistrer_voiture")}}">Enregistrer une voiture</a></li>
+                            </ul>
+                        </div>
                         {% endif %}
-                    {% else %}
-                    <button class="uk-button uk-button-default" type="button">Inscription</button>
-                    <div uk-dropdown>
-                        <ul class="uk-nav uk-dropdown-nav">
-                            <li class="uk-active"><a href="{{path ("register_part")}}">Inscription particulier</a></li>
-                            <li class="uk-active"><a href="{{path ("register_pro")}}">Inscription professionnel</a></li>
-                        </ul>
-                    </div>
-                    <li class="uk-parent"><a href="{{path ("login")}}">Connexion</a></li>
-                    {% endif %}
-                </ul>
-                    {% if is_granted ("ROLE_ADMIN") %}
-                    <button class="uk-button uk-button-default" type="button">admin</button>
-                    <div uk-dropdown>
-                        <ul class="uk-nav uk-dropdown-nav">
-                            <li><a href="{{path ("liste_agences")}}">Liste des agences</a></li>
-                            <li><a href="{{path ("enregistrer_agence")}}">Ajouter une agence</a></li>
-                            <li><a href="{{path ("liste_marques")}}">Liste des marques</a></li>
-                            <li><a href="{{path ("enregistrer_marque")}}">Ajouter une marque</a></li>
-                            <li><a href="{{path ("enregistrer_voiture")}}">Enregistrer une voiture</a></li>
-                        </ul>
-                    </div>
-                    {% endif %}
-            </div>
-        </nav>
+                </div>
+            </nav>
+        </div>
         {% endblock %}
 
         {% block body %}

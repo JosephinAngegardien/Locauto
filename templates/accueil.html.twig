@@ -1,11 +1,25 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Page d'accueil{% endblock %}
+{% block title %}{{ parent() }} : accueil{% endblock %}
 
 
 {% block body %}
 {{ parent() }}
+
+<section class="uk-child-width-1-2@m" uk-grid>
+    <div>
+        <div class="uk-card uk-card-default">
+            <figure class="uk-card-media-top">
+                <img src="images/voiture1.jpg" alt="Une image">
+            </figure>
+            <div class="uk-card-body">
+                <h3 class="uk-card-title">Media Top</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
 
