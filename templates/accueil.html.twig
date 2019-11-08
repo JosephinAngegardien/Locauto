@@ -5,21 +5,31 @@
 
 
 {% block body %}
-{{ parent() }}
 
-<section class="uk-child-width-1-2@m" uk-grid>
+<main class="uk-height-large uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" style="background-image: url(https://www.lerevenu.com/sites/site/files/styles/img_lg/public/field/image/bugatti.jpg?itok=MKE31XFL);" uk-img>
+    
+    <h1>Locauto</h1>
+
     <div>
-        <div class="uk-card uk-card-default">
-            <figure class="uk-card-media-top">
-                <img src="images/voiture1.jpg" alt="Une image">
-            </figure>
-            <div class="uk-card-body">
-                <h3 class="uk-card-title">Media Top</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+        <a href="{{path ("liste_voitures")}}">Nos voitures</a>
+    </div>
+        
+
+    {# <section class="uk-child-width-1-2@m" uk-grid>
+        <div>
+            <div class="uk-card uk-card-default">
+                <figure class="uk-card-media-top">
+                    <img src="images/voiture1.jpg" alt="Une image">
+                </figure>
+                <div class="uk-card-body">
+                    <h3 class="uk-card-title">Media Top</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section> #}
+
+</main>
 
 {% endblock %}
 

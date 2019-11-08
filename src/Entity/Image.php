@@ -37,7 +37,7 @@ class Image
     private $alaune;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Voiture", inversedBy="images")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Voiture", inversedBy="images", cascade={"persist"})
      */
     private $voiture;
 
@@ -105,4 +105,10 @@ class Image
 
         return $this;
     }
+
+    public function __toString()
+    {
+      return $this->nom;
+    }
+
 }

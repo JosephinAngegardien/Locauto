@@ -13,9 +13,19 @@
 {% for cat in voiture.categories %}
      <p> - {{ cat }}</p>
 {% endfor %}
+{% for im in voiture.images %}
+     <img src="{{ im.url }}">
+{% endfor %}
 <p>Disponible dans notre agence de {{ voiture.agence }}</p>
 <p>Tarif : {{ voiture.tarif }} € par jour</p>
+<p>Référence :  {{ voiture.reference }}</p>
 </section>
+
+{% if is_granted ("ROLE_ADMIN") %}
+<div>
+     <a class="uk-button uk-button-success" href="{{path ("modif_voiture",{'id':voiture.id})}}">Modifier</a>
+</div>
+{% endif %}
 
 {% endblock %}
 

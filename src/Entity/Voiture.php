@@ -55,7 +55,7 @@ class Voiture
     private $tarif;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\image", mappedBy="voiture")
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="voiture", cascade={"persist"})
      */
     private $images;
 
@@ -189,7 +189,7 @@ class Voiture
     }
 
     /**
-     * @return Collection|image[]
+     * @return Collection|Image[]
      */
     public function getImages(): Collection
     {

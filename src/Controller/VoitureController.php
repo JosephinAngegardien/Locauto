@@ -75,7 +75,23 @@ class VoitureController extends AbstractController
         return $this->redirectToRoute('liste_voitures');
     }
 
-    // Modifier voiture
+    /**
+     * @Route("/modifvoiture/{id}", name="modif_voiture")
+     */
+    public function modifierVoiture(Voiture $voiture, Request $request, ObjectManager $manager){
+        
+        $form=$this->createForm(VoitureType::class, $voiture);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($voiture);
+            $manager->flush();
+
+            return $this->redirectToRoute('voir_voiture', ['id' => $voiture->getID()]);
+        }
+
+        return $this->render('voitures/enregistrervoiture.html.twig', ['form' => $form->createView(), 'voiture' => $voiture]);
+    }
 
 
 
