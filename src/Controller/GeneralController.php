@@ -115,7 +115,7 @@ class GeneralController extends AbstractController
     }
 
     /**
-     * @Route("/supprimermarque/{id}", name="supprimer_marque")
+     * @Route("/supprimermarque/{slug}", name="supprimer_marque")
      * @IsGranted("ROLE_ADMIN")
      */
     public function supprMarque(Marque $marque, ObjectManager $manager) {

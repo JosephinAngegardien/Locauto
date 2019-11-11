@@ -2,12 +2,18 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MarqueRepository")
+ *  @UniqueEntity(
+ *  fields={"nom"},
+ *  message="Cette marque est déjà en base de données."
+ * )
  */
 class Marque
 {
@@ -27,6 +33,15 @@ class Marque
      * @ORM\OneToMany(targetEntity="App\Entity\Voiture", mappedBy="marque")
      */
     private $voitures;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(type="string", length=255)
+     * 
+     * @Gedmo\Slug(fields={"nom"})
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -86,7 +101,17 @@ class Marque
       return $this->nom;
     }
 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
 
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
 
 
 

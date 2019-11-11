@@ -11,9 +11,9 @@
         <div>{{ voiture.marque|e }} {{ voiture.modele|e }}</div>
         {% if is_granted ("ROLE_ADMIN") %}
         {# <div><a class="" href="{{ path ("modif_marque",{'id':marque.id}) }}">Modifier</a></div> #}
-        <div><a class="uk-button uk-button-danger" href="{{ path ("supprimer_voiture",{'id':voiture.id}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a></div>
+        <div><a class="uk-button uk-button-danger" href="{{ path ("supprimer_voiture",{'slug':voiture.slug}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a></div>
         {% endif %}
-        <div><a class="" href="{{ path ("voir_voiture",{'id':voiture.id}) }}">Voir cette voiture</a></div>
+        <div><a class="" href="{{ path ("voir_voiture",{'slug':voiture.slug}) }}">Voir cette voiture</a></div>
     {% endfor %}
 </section>
 {% endblock %}

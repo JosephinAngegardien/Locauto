@@ -58,6 +58,11 @@ class User implements UserInterface
      */
     private $username;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="auteur", orphanRemoval=true)
+     */
+    private $commentaires;
+
     // /**
     //  * @ORM\Column(type="datetime")
     //  */
@@ -67,6 +72,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->locations = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -209,6 +215,37 @@ class User implements UserInterface
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setAuteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->contains($commentaire)) {
+            $this->commentaires->removeElement($commentaire);
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getAuteur() === $this) {
+                $commentaire->setAuteur(null);
+            }
+        }
 
         return $this;
     }

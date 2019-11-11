@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VoitureRepository")
@@ -59,11 +60,26 @@ class Voiture
      */
     private $images;
 
+    /**
+     * @var string
+     * 
+     * @ORM\Column(type="string", length=255)
+     * 
+     * @Gedmo\Slug(fields={"modele"})
+     */
+    private $slug;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="voiture", orphanRemoval=true)
+     */
+    private $commentaires;
+
     public function __construct()
     {
         $this->locations = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -218,4 +234,77 @@ class Voiture
 
         return $this;
     }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Permet d'obtenir un tableau des jours où la voiture est réservée
+     *
+     * @return array Un tableau d'objets DateTime représentant les jours de réservation
+     */
+    public function getNotAvailableDays() {
+        $notAvailableDays = [];
+
+        foreach($this->locations as $location) {
+            // Calculer les jours qui se trouvent entre le début et la fin de la location
+            $resultat = range(
+                $location->getDebut()->getTimestamp(), 
+                $location->getFin()->getTimestamp(), 
+                24 * 60 * 60
+            );
+            
+            $days = array_map(function($dayTimestamp){
+                return new \DateTime(date('Y-m-d', $dayTimestamp));
+            }, $resultat);
+
+            $notAvailableDays = array_merge($notAvailableDays, $days);
+        }
+
+        return $notAvailableDays;
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setVoiture($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->contains($commentaire)) {
+            $this->commentaires->removeElement($commentaire);
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getVoiture() === $this) {
+                $commentaire->setVoiture(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }
+
+

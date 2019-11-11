@@ -43,7 +43,7 @@ class VoitureController extends AbstractController
     }
 
     /**
-     * @Route("/voirvoiture/{id}", name="voir_voiture")
+     * @Route("/voirvoiture/{slug}", name="voir_voiture")
      * 
      * @return Response
      */
@@ -64,7 +64,7 @@ class VoitureController extends AbstractController
     }
 
     /**
-     * @Route("/supprimervoiture/{id}", name="supprimer_voiture")
+     * @Route("/supprimervoiture/{slug}", name="supprimer_voiture")
      * @IsGranted("ROLE_ADMIN")
      */
     public function supprVoiture(Voiture $voiture, ObjectManager $manager) {
@@ -76,7 +76,7 @@ class VoitureController extends AbstractController
     }
 
     /**
-     * @Route("/modifvoiture/{id}", name="modif_voiture")
+     * @Route("/modifvoiture/{slug}", name="modif_voiture")
      */
     public function modifierVoiture(Voiture $voiture, Request $request, ObjectManager $manager){
         
@@ -87,7 +87,7 @@ class VoitureController extends AbstractController
             $manager->persist($voiture);
             $manager->flush();
 
-            return $this->redirectToRoute('voir_voiture', ['id' => $voiture->getID()]);
+            return $this->redirectToRoute('voir_voiture', ['slug' => $voiture->getSlug()]);
         }
 
         return $this->render('voitures/enregistrervoiture.html.twig', ['form' => $form->createView(), 'voiture' => $voiture]);

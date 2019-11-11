@@ -23,7 +23,13 @@
 
 {% if is_granted ("ROLE_ADMIN") %}
 <div>
-     <a class="uk-button uk-button-success" href="{{path ("modif_voiture",{'id':voiture.id})}}">Modifier</a>
+     <a class="uk-button uk-button-success" href="{{path ("modif_voiture",{'slug':voiture.slug})}}">Modifier</a>
+</div>
+{% endif %}
+
+{% if is_granted ("ROLE_USER") %}
+<div>
+     <a class="uk-button uk-button-success" href="{{path ("louer_voiture",{'slug':voiture.slug})}}">Louer ce véhicule</a>
 </div>
 {% endif %}
 

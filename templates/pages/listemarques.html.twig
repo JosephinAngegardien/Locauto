@@ -10,7 +10,7 @@
     {% for marque in marques %}
         <div>{{ marque.nom|e }}</div>
         {# <div><a class="" href="{{ path ("modif_marque",{'id':marque.id}) }}">Modifier</a></div> #}
-        <div><a class="" href="{{ path ("supprimer_marque",{'id':marque.id}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a></div>
+        <div><a class="" href="{{ path ("supprimer_marque",{'slug':marque.slug}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a></div>
     {% endfor %}
 </section>
 {% endblock %}
