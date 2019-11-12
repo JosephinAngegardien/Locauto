@@ -33,11 +33,16 @@ class LocationController extends AbstractController
             $loc->setUser($user)
                     ->setVoiture($voiture);
 
+            /*$loc->setMontant(et tu refais la multiplication que te fait javascript)*/
+            $interval = date_diff($loc->getDebut(), $loc->getFin() );
+            $nbjours = intval($interval->format('%R%a days') );
+            $loc->setMontant($voiture->getTarif() * ($nbjours) );
+
             // Si les dates ne sont pas disponibles, message d'erreur
             if(!$loc->isBookableDates()) {
                 $this->addFlash(
                     'warning',
-                    "Les dates que vous avez choisi ne peuvent être réservées : elles sont déjà prises."
+                    "Les dates que vous avez choisies ne peuvent être réservées : elles sont déjà prises."
                 );
             } else {
                 // Sinon enregistrement et redirection
