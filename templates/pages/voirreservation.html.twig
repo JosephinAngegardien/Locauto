@@ -59,18 +59,18 @@
                 </div> #}
             </div>
             {# <div class="col">
-                <div class="alert alert-light">
-                    <h2 class="alert-heading">Votre hébergement</h2>
+                <div class="">
+                    <h2 class="">Votre véhicule</h2>
 
                     <h4>
-                        <a href="{{ path('ads_show', {'slug': ad.slug}) }}">{{ad.title}}</a>
+                        <a href="{{ path('#', {'slug': voiture.slug}) }}">{{voiture.reference}}</a>
                     </h4>
 
-                    <img src="{{ad.coverImage}}" alt="Image de {{ad.title}}" class="img-fluid">
+                    {% for im in voiture.images %}
+                    <img src="{{ im.url }}" alt="Image de {{voiture.reference}}" class="">
+                    {% endfor %}
 
-                    {{ad.content | raw}}
-
-                    <a href="{{path('ads_show', {'slug': ad.slug})}}" class="btn btn-primary">Plus d'informations</a>
+                    <a href="{{path('#', {'slug': voiture.slug})}}" class="">Plus d'informations</a>
                 </div>
             </div> #}
         </div>

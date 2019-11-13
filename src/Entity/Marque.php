@@ -30,11 +30,6 @@ class Marque
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Voiture", mappedBy="marque")
-     */
-    private $voitures;
-
-    /**
      * @var string
      * 
      * @ORM\Column(type="string", length=255)
@@ -42,6 +37,11 @@ class Marque
      * @Gedmo\Slug(fields={"nom"})
      */
     private $slug;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Voiture", mappedBy="marque")
+     */
+    private $voitures;
 
     public function __construct()
     {

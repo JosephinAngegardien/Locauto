@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use Webmozart\Assert\Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VoitureRepository")
@@ -24,6 +24,25 @@ class Voiture
      * @ORM\Column(type="string", length=255)
      */
     private $modele;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $tarif;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $reference;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(type="string", length=255)
+     * 
+     * @Gedmo\Slug(fields={"modele"})
+     */
+    private $slug;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Marque", inversedBy="voitures")
@@ -47,29 +66,10 @@ class Voiture
     private $categories;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     */
-    private $reference;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $tarif;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="voiture", cascade={"persist"})
-     * @Assert\Url()
+     * @Assert\Url
      */
     private $images;
-
-    /**
-     * @var string
-     * 
-     * @ORM\Column(type="string", length=255)
-     * 
-     * @Gedmo\Slug(fields={"modele"})
-     */
-    private $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="voiture", orphanRemoval=true)

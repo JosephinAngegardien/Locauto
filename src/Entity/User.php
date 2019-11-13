@@ -49,14 +49,14 @@ class User implements UserInterface
     protected $resetToken;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Location", mappedBy="user", orphanRemoval=true)
-     */
-    private $locations;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $username;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Location", mappedBy="user", orphanRemoval=true)
+     */
+    private $locations;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Commentaire", mappedBy="auteur", orphanRemoval=true)

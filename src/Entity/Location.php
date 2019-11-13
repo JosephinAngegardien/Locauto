@@ -34,6 +34,11 @@ class Location
     private $fin;
 
     /**
+     * @ORM\Column(type="float")
+     */
+    private $montant;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="locations")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -44,15 +49,10 @@ class Location
      */
     private $voiture;
 
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $montant;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $commentaire;
+    // /**
+    //  * @ORM\Column(type="text", nullable=true)
+    //  */
+    // private $commentaire;
 
 
     public function getId(): ?int
@@ -170,17 +170,17 @@ class Location
         return $diff->days;
     }
 
-    public function getCommentaire(): ?string
-    {
-        return $this->commentaire;
-    }
+    // public function getCommentaire(): ?string
+    // {
+    //     return $this->commentaire;
+    // }
 
-    public function setCommentaire(?string $commentaire): self
-    {
-        $this->commentaire = $commentaire;
+    // public function setCommentaire(?string $commentaire): self
+    // {
+    //     $this->commentaire = $commentaire;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
 
 

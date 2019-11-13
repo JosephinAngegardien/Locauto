@@ -27,7 +27,7 @@ class Commentaire
     private $note;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $contenu;
 
