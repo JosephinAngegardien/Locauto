@@ -49,11 +49,6 @@ class Location
      */
     private $voiture;
 
-    // /**
-    //  * @ORM\Column(type="text", nullable=true)
-    //  */
-    // private $commentaire;
-
 
     public function getId(): ?int
     {
@@ -170,17 +165,6 @@ class Location
         return $diff->days;
     }
 
-    // public function getCommentaire(): ?string
-    // {
-    //     return $this->commentaire;
-    // }
-
-    // public function setCommentaire(?string $commentaire): self
-    // {
-    //     $this->commentaire = $commentaire;
-
-    //     return $this;
-    // }
 
 
 
