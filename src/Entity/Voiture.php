@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Webmozart\Assert\Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\Collection;
@@ -57,6 +58,7 @@ class Voiture
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="voiture", cascade={"persist"})
+     * @Assert\Url()
      */
     private $images;
 

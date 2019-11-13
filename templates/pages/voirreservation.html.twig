@@ -4,69 +4,48 @@
 
 {% block body %}
 
-    {% set ad = location.voiture.ad %}
-    {% set author = location.user %}
+    {# {% set ad = location.voiture.ad %}
+    {% set author = location.user %} #}
 
     <div class="container">
-        <h1 class="my-5">Votre réservation (n° {{location.id}})</h1>
+        <h1 class="">Votre réservation (n° {{location.id}})</h1>
 
         {% if app.request.query.get('withAlert') %}
-            <div class="alert alert-success">
-                <h4 class="alert-heading">Bravo !</h4>
-                <p>Votre réservation du véhicule {{ location.voiture.marque }} {{ location.voiture.modele }} a été prise en compte.</p>
+            <div class="">
+                <h4>Votre réservation du véhicule {{ location.voiture.marque }} {{ location.voiture.modele }} a été prise en compte.</h4>
             </div>
         {% endif %}
 
         <div class="row">
             <div class="col">
-                <div class="alert alert-light">
+                <div class="">
                     <h2>Détails</h2>
                     <dl class="row">
                         <dt class="col-md-4">Numéro</dt>
                         <dd class="col-md-8">{{location.id}}</dd>
-                        <dt class="col-md-4">Date d'arrivée</dt>
+                        <dt class="col-md-4">Premier jour de la location</dt>
                         <dd class="col-md-8">{{location.debut | date('d/m/Y')}}</dd>
-                        <dt class="col-md-4">Date de départ</dt>
+                        <dt class="col-md-4">Dernier jour de la location</dt>
                         <dd class="col-md-8">{{location.fin | date('d/m/Y')}}</dd>
-                        <dt class="col-md-4">Nombre de nuits</dt>
+                        <dt class="col-md-4">Nombre de jours</dt>
                         <dd class="col-md-8">{{location.duration}}</dd>
                         <dt class="col-md-4">Montant total</dt>
                         <dd class="col-md-8">{{location.montant | number_format(2, ',', ' ')}} &euro;</dd>
-                        <dt class="col-md-4">Commentaire</dt>
-                        <dd class="col-md-8">{{location.commentaire | default('Aucun commentaire')}}</dd>
+                        {# <dt class="col-md-4">Commentaire</dt>
+                        <dd class="col-md-8">{{location.commentaire | default('Aucun commentaire')}}</dd> #}
                     </dl>
-
-                    <hr>
-
-                    <h2 class="alert-heading">Votre hôte</h2>
-
-                    <div class="row mb-3">
-                        <div class="col-3">
-                            <img src="{{author.picture}}" class="avatar avatar-medium" alt="Avatar de {{author.fullName}}">
-                        </div>
-                        <div class="col-9">
-                            <h4>
-                                <a href="{{ path('user_show', {'slug': author.slug}) }}">{{ author.fullName }}</a>
-                            </h4>
-
-                            <span class="badge badge-primary">{{author.ads|length}} annonces</span>
-                        </div>
-                    </div>
-                    {{author.description | raw}}
-
-                    <a href="{{ path("user_show", {'slug': author.slug}) }}" class="btn btn-primary">Plus d'infos sur {{author.firstName}}</a>
                 </div>
 
-                <div class="alert alert-light" id="comment">
-                    <h2 class="alert-heading">Votre avis compte !</h2>
-                    {% if date() > date(booking.endDate) %}
-                        {% set comment = booking.ad.commentFromAuthor(app.user) %}
-                        {% if comment is not null %}
+                {# <div class="" id="">
+                    <h2 class="">Vous pouvez donner votre avis.</h2>
+                    {% if date() > date(location.fin) %}
+                        {% set commentaire = location.voiture.commentFromAuthor(app.user) %}
+                        {% if commentaire is not null %}
                             <blockquote>
-                                {{comment.content}}
+                                {{commentaire.contenu}}
                             </blockquote>
 
-                            <strong>Note : </strong> {% include 'partials/rating.html.twig' with {'rating': comment.rating} %}
+                            <strong>Note : </strong> {% include 'pages/notation.html.twig' with {'note': commentaire.note} %}
                         {% else %}
                             {{ form_start(form) }}
                             {{ form_widget(form) }}
@@ -77,9 +56,9 @@
                     {% else %}
                         <p>Vous ne pourrez pas noter cette annonce tant que votre voyage ne sera pas complet !</p>
                     {% endif %}
-                </div>
+                </div> #}
             </div>
-            <div class="col">
+            {# <div class="col">
                 <div class="alert alert-light">
                     <h2 class="alert-heading">Votre hébergement</h2>
 
@@ -93,8 +72,11 @@
 
                     <a href="{{path('ads_show', {'slug': ad.slug})}}" class="btn btn-primary">Plus d'informations</a>
                 </div>
-            </div>
+            </div> #}
         </div>
+    </div>
+    <div>
+        <a href="{{path ("liste_voitures")}}">Retourner à la liste des véhicules</a>
     </div>
 
 {% endblock %}
