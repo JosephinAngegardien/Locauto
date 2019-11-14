@@ -5,34 +5,36 @@
 
 {% block body %}
 {{ parent() }}
+<div class="formulaire">
 
-<section>
-<h1>{{ voiture.modele }}</h1>
-<p>Véhicule de marque {{ voiture.marque }}</p>
-<p>Type(s) de véhicule :</p>
-{% for cat in voiture.categories %}
-     <p> - {{ cat }}</p>
-{% endfor %}
-{% for im in voiture.images %}
-     <img src="{{ im.url }}">
-{% endfor %}
-<p>Disponible dans notre agence de {{ voiture.agence }}</p>
-<p>Tarif : {{ voiture.tarif }} € par jour</p>
-<p>Référence :  {{ voiture.reference }}</p>
-</section>
+     <section>
+     <h1>{{ voiture.modele }}</h1>
+     <p>Véhicule de marque {{ voiture.marque }}</p>
+     <p>Type(s) de véhicule :</p>
+     {% for cat in voiture.categories %}
+          <p> - {{ cat }}</p>
+     {% endfor %}
+     {% for im in voiture.images %}
+          <img src="{{ im.url }}">
+     {% endfor %}
+     <p>Disponible dans notre agence de {{ voiture.agence }}</p>
+     <p>Tarif : {{ voiture.tarif }} € par jour</p>
+     <p>Référence :  {{ voiture.reference }}</p>
+     </section>
 
-{% if is_granted ("ROLE_ADMIN") %}
-<div>
-     <a class="uk-button uk-button-success" href="{{path ("modif_voiture",{'slug':voiture.slug})}}">Modifier</a>
+     {% if is_granted ("ROLE_ADMIN") %}
+     <div>
+          <a class="uk-button uk-button-success" href="{{path ("modif_voiture",{'slug':voiture.slug})}}">Modifier</a>
+     </div>
+     {% endif %}
+
+     {% if is_granted ("ROLE_USER") %}
+     <div>
+          <a class="uk-button uk-button-success" href="{{path ("louer_voiture",{'slug':voiture.slug})}}">Louer ce véhicule</a>
+     </div>
+     {% endif %}
+
 </div>
-{% endif %}
-
-{% if is_granted ("ROLE_USER") %}
-<div>
-     <a class="uk-button uk-button-success" href="{{path ("louer_voiture",{'slug':voiture.slug})}}">Louer ce véhicule</a>
-</div>
-{% endif %}
-
 {% endblock %}
 
 

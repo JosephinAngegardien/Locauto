@@ -2,25 +2,24 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title id="nomdusite1">{% block title %}Locauto{% endblock %}</title>
+        <title>{% block title %}Locauto{% endblock %}</title>
         
         {% block stylesheets %}
         <!-- UIkit CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/css/uikit.min.css" />
         {# Google fonts #}
-<link href="https://fonts.googleapis.com/css?family=Sofia&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet"> 
         {# Mon CSS #}
 <link rel="stylesheet" href="css/style.css" />
         {% endblock %}
     </head>
-    <body>
-        <section class="uk-background-secondary uk-padding uk-panel">
+    <body id="bodybase">
+        <section class="uk-background-default" id="zone1">
 
         {% block navigation %}
         <header uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
             <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
-                <h1 class="uk-heading-small">Locauto</h1>
-                <div class="uk-navbar-right">
+                <div class="uk-navbar-center">
                     <ul class="uk-navbar-nav">
                         <li><a class="uk-link-muted" href="{{path ("accueil")}}">accueil</a></li>
                         {% if app.user %}
@@ -41,6 +40,7 @@
                         </div>
                         <li class="uk-parent"><a href="{{path ("login")}}">Connexion</a></li>
                         {% endif %}
+                        <li class="uk-parent"><a href="{{path ("liste_voitures")}}">Nos véhicules</a></li>
                     </ul>
                         {% if is_granted ("ROLE_ADMIN") %}
                         <button class="uk-button uk-button-default" type="button">admin</button>
@@ -63,18 +63,16 @@
         </header>
         {% endblock %}
 
+        <div class="titre">
+            <h1 id="nomdusite">Locauto</h1>
+        </div>
+
         {% block body %}
-        {# <div class="uk-height-large uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" data-src="https://www.lerevenu.com/sites/site/files/styles/img_lg/public/field/image/bugatti.jpg?itok=MKE31XFL" uk-img>
-            <h1>Locauto</h1>
-            <div>
-                <a href="{{path ("liste_voitures")}}">Nos voitures</a>
-            </div>
-        </div> #}
-
-{# <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> #}
-
         {% endblock %}
 
+        </section>
+
+        <section id="zone2">
         </section>
         {% block javascripts %}
             <script
@@ -86,7 +84,7 @@
             <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit-icons.min.js"></script>
                 {# Mon JS #}
-            <script src="js/monjs.js"></script>
+            {# <script src="js/monjs.js"></script> #}
         {% endblock %}
     </body>
 </html>

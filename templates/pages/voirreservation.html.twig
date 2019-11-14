@@ -3,12 +3,14 @@
 {% block title %}Réservation n° {{location.id}}{% endblock %}
 
 {% block body %}
+{{ parent() }}
+<div class="formulaire">
 
     {# {% set ad = location.voiture.ad %}
     {% set author = location.user %} #}
 
     <div class="container">
-        <h1 class="">Votre réservation (n° {{location.id}})</h1>
+        <h2 class="">Votre réservation (n° de réservation : {{location.id}})</h2>
 
         {% if app.request.query.get('withAlert') %}
             <div class="">
@@ -19,7 +21,7 @@
         <div class="row">
             <div class="col">
                 <div class="">
-                    <h2>Détails</h2>
+                    <h3>Détails</h3>
                     <dl class="row">
                         <dt class="col-md-4">Numéro</dt>
                         <dd class="col-md-8">{{location.id}}</dd>
@@ -78,7 +80,7 @@
     <div>
         <a href="{{path ("liste_voitures")}}">Retourner à la liste des véhicules</a>
     </div>
-
+</div>
 {% endblock %}
 
 

@@ -5,24 +5,26 @@
 
 {% block body %}
 {{ parent() }}
-<h1>Images disponibles</h1>
-<section>
-    {% for image in images %}
-    <section class="uk-child-width-1-2@m" uk-grid>
-        <div>
-            <div class="uk-card uk-card-default">
-                <figure class="uk-card-media-top">
-                    <img src="{{ image.url }}" alt="Une image">
-                </figure>
-                <div class="uk-card-body">
-                    <h3 class="uk-card-title">{{ image.nom|e }}</h3>
-                    <p>{{ image.legende|e }}</p>
-                    <a class="uk-button uk-button-danger" href="{{ path ("supprimer_image",{'id':image.id}) }}" onclick="confirm('Supprimer ?')">Supprimer</a>
+<div class="formulaire">
+    <h1>Images disponibles</h1>
+    <section>
+        {% for image in images %}
+        <section class="uk-child-width-1-2@m" uk-grid>
+            <div>
+                <div class="uk-card uk-card-default">
+                    <figure class="uk-card-media-top">
+                        <img src="{{ image.url }}" alt="Une image">
+                    </figure>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title">{{ image.nom|e }}</h3>
+                        <p>{{ image.legende|e }}</p>
+                        <a class="uk-button uk-button-danger" href="{{ path ("supprimer_image",{'id':image.id}) }}" onclick="confirm('Supprimer ?')">Supprimer</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+        {% endfor %}
     </section>
-    {% endfor %}
-</section>
+</div>
 {% endblock %}
 

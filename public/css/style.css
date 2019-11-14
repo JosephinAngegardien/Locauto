@@ -1,13 +1,49 @@
 
 
-#nomdusite1{
-    font-family: 'Sofia', cursive;
+#nomdusite{
+    font-family: 'Courgette', cursive;
+    font-size: 5em;
 }
-#nomdusite2{
-    font-family: 'Sofia', cursive;
+#bodybase{
+    margin: 0;
+    padding: 0;
 }
-/* body{
-    font-family: 'Sofia', cursive;
-} */
+#zone1{
+    height: 100vh;
+    width: 100%;
+    background-image: url("/images/route1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+#zone2{
+    height: 100vh;
+    width: 100%;
+    background-image: url("/images/route2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.titre{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    border: 1px solid black;
+    border-radius: 1em;
+    text-align: center;
+}
+.formulaire{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    border: 1px solid black;
+    border-radius: 1em;
+    text-align: center;
+}
+
+
+
 
 

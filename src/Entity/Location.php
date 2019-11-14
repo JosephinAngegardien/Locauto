@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LocationRepository")
@@ -112,7 +113,7 @@ class Location
         // 1) Il faut connaitre les dates auxquelles le véhicule est déjà réservé
         $notAvailableDays = $this->voiture->getNotAvailableDays();
         // 2) Il faut comparer les dates envisagées avec les dates réservées
-        $bookingDays      = $this->getDays();
+        $bookingDays = $this->getDays();
 
         $formatDay = function($day){
             return $day->format('Y-m-d');
