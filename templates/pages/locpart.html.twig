@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{ parent() }} : loc. part.{% endblock %}
+
+{% block body %}
+
+    {% if user.locations | length > 0 %}  
+        <div class="">
+            {% for loc in user.locations %}
+                {{ loc.voiture }}{{ loc.montant }}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="">
+            <p>
+                <strong>{{user.username}}</strong> n'a pas encore loué de voiture chez <strong>Locauto</strong>.
+            </p>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+
+
+

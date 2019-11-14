@@ -3,7 +3,6 @@
 {% block title %}Réservation n° {{location.id}}{% endblock %}
 
 {% block body %}
-{{ parent() }}
 <div class="formulaire">
 
     {# {% set ad = location.voiture.ad %}
@@ -56,7 +55,7 @@
                         {% endif %}
 
                     {% else %}
-                        <p>Vous ne pourrez pas noter cette annonce tant que votre voyage ne sera pas complet !</p>
+                        <p>Vous ne pourrez pas noter ce véhicule avant la fin de la location.</p>
                     {% endif %}
                 </div> #}
             </div>

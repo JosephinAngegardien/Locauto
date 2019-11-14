@@ -6,6 +6,18 @@
 
 {% block body %}
 {# {{ parent() }} #}
+{# {% if app.user %}
+<h2>Mes locations</h2>
+    {% if user.locations | length > 0 %}
+        {% for loc in user.locations  %}
+            <section>
+                <p>{{ loc.voiture }}{{ loc.debut }}{{ loc.fin }}{{ loc.montant }}</p>
+            </section>
+        {% endfor %}
+    {% else %}
+        <p>Vous n'avez encore loué aucun de nos véhicules.</p>
+    {% endif %}
+{% endif %} #}
 
     {# <section class="uk-child-width-1-2@m" uk-grid>
         <div>

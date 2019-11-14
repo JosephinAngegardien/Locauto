@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Voiture;
 use App\Entity\Location;
 use App\Form\LocationType;
@@ -96,6 +97,16 @@ class LocationController extends AbstractController
         return $this->render('pages/voirreservation.html.twig', [
             'location' => $loc,
             'form'    => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/particulier/{id}", name="locations_part")
+     */
+    public function pageParticulier(User $user)
+    {
+        return $this->render('pages/locpart.html.twig', [
+            'user' => $user
         ]);
     }
 

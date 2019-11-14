@@ -25,6 +25,13 @@
                         {% if app.user %}
                         <li class="uk-active"><a href="{{path ("logout")}}">Deconnexion</a></li>
                             {% if is_granted ("ROLE_PARTICULIER") %}
+                            <button class="uk-button uk-button-default" type="button">Mon compte</button>
+                                <div uk-dropdown>
+                                    <ul class="uk-nav uk-dropdown-nav">
+                                        <li><a href="{{path ("modif_part")}}">Modifier mon profil</a></li>
+                                        <li><a href="{{path ("locations_part")}}">Mes locations</a></li>
+                                    </ul>
+                                </div>
                             <li class="uk-parent"><a href="{{path ("modif_part")}}">Modifier mon profil</a></li>
                             {% endif %}
                             {% if is_granted ("ROLE_PROFESSIONNEL") and is_granted ('ROLE_ADMIN') == false %}

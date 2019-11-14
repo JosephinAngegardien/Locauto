@@ -4,7 +4,6 @@
 {% block title %}{{ parent() }} : liste voitures{% endblock %}
 
 {% block body %}
-{{ parent() }}
 <div class="formulaire">
 
     <h1>Nos voitures</h1>
@@ -12,7 +11,6 @@
         {% for voiture in voitures %}
             <div>{{ voiture.marque|e }} {{ voiture.modele|e }}</div>
             {% if is_granted ("ROLE_ADMIN") %}
-            {# <div><a class="" href="{{ path ("modif_marque",{'id':marque.id}) }}">Modifier</a></div> #}
             <div><a class="uk-button uk-button-danger" href="{{ path ("supprimer_voiture",{'slug':voiture.slug}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a></div>
             {% endif %}
             <div><a class="" href="{{ path ("voir_voiture",{'slug':voiture.slug}) }}">Voir cette voiture</a></div>
