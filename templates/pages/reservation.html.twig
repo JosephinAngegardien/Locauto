@@ -4,9 +4,9 @@
 {% block title %}{{ parent() }} : reservation{% endblock %}
 
 {% block body %}
-<div class="formulaire">
+<div class="formavecjs">
 
-    <h1>Réservez le véhicule {{ voiture.reference }}, qui est une magnifique {{ voiture.marque }} {{ voiture.modele }}</h1>
+    <h2>Réservez le véhicule {{ voiture.reference }}, qui est une magnifique {{ voiture.marque }} {{ voiture.modele }}</h2>
 
     {{ form_start(form) }}
         <fieldset class="uk-fieldset">

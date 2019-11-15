@@ -10,7 +10,7 @@
         {# Google fonts #}
 <link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet"> 
         {# Mon CSS #}
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="{{ asset('css/style.css') }}" />
         {% endblock %}
     </head>
     <body id="bodybase">
@@ -32,7 +32,6 @@
                                         <li><a href="{{path ("locations_part")}}">Mes locations</a></li>
                                     </ul>
                                 </div>
-                            <li class="uk-parent"><a href="{{path ("modif_part")}}">Modifier mon profil</a></li>
                             {% endif %}
                             {% if is_granted ("ROLE_PROFESSIONNEL") and is_granted ('ROLE_ADMIN') == false %}
                             <li class="uk-parent"><a href="{{path ("modif_pro")}}">Modifier le profil</a></li>

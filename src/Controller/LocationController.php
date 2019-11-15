@@ -43,6 +43,7 @@ class LocationController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute('voir_reservation', ['id' => $loc->getId(), 'withAlert' => true]);
 
+
             // Si les dates ne sont pas disponibles, message d'erreur
             // if(!$loc->isBookableDates()) {
             //     $this->addFlash(
@@ -60,7 +61,7 @@ class LocationController extends AbstractController
 
         return $this->render('pages/reservation.html.twig', [
             'voiture' => $voiture,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
@@ -101,13 +102,11 @@ class LocationController extends AbstractController
     }
 
     /**
-     * @Route("/particulier/{id}", name="locations_part")
+     * @Route("/particulier", name="locations_part")
      */
-    public function pageParticulier(User $user)
+    public function pageParticulier()
     {
-        return $this->render('pages/locpart.html.twig', [
-            'user' => $user
-        ]);
+        return $this->render('pages/locpart.html.twig');
     }
 
 
