@@ -73,6 +73,12 @@
             <h1 id="nomdusite">Locauto</h1>
         </div>
 
+        {% for message in app.flashes('warning') %}
+            <div class="flash-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         {% block body %}
         {% endblock %}
 

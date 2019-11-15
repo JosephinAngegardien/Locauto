@@ -39,24 +39,19 @@ class LocationController extends AbstractController
             $nbjours = intval($interval->format('%R%a days') );
             $loc->setMontant($voiture->getTarif() * ($nbjours) );
 
-            $manager->persist($loc);
-            $manager->flush();
-            return $this->redirectToRoute('voir_reservation', ['id' => $loc->getId(), 'withAlert' => true]);
-
-
             // Si les dates ne sont pas disponibles, message d'erreur
-            // if(!$loc->isBookableDates()) {
-            //     $this->addFlash(
-            //         'warning',
-            //         "Les dates que vous avez choisies ne peuvent être réservées : elles sont déjà prises."
-            //     );
-            // } else {
-            //     // Sinon enregistrement et redirection
-            //     $manager->persist($loc);
-            //     $manager->flush();
+            if(!$loc->isBookableDates()) {
+                $this->addFlash(
+                    'warning',
+                    "Les dates que vous avez choisies ne peuvent être réservées : elles sont déjà prises."
+                );
+            } else {
+                // Sinon enregistrement et redirection
+                $manager->persist($loc);
+                $manager->flush();
     
-            //     return $this->redirectToRoute('voir_reservation', ['id' => $loc->getId(), 'withAlert' => true]);
-            // }
+                return $this->redirectToRoute('voir_reservation', ['id' => $loc->getId(), 'withAlert' => true]);
+            }
         }
 
         return $this->render('pages/reservation.html.twig', [

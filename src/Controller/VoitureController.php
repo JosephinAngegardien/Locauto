@@ -64,6 +64,16 @@ class VoitureController extends AbstractController
     }
 
     /**
+     * @Route("/listevoitures/categorie", name="liste_voitures_categorie")
+     */
+    public function listeVoituresParCategorie() {
+
+        $voitures = $this->getDoctrine()->getRepository(Voiture::class)->findAll();
+
+        return $this->render('/voitures/listevoitures.html.twig', ['voitures' => $voitures]);
+    }
+
+    /**
      * @Route("/supprimervoiture/{slug}", name="supprimer_voiture")
      * @IsGranted("ROLE_ADMIN")
      */
