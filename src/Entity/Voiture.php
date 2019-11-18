@@ -67,7 +67,6 @@ class Voiture
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="voiture", cascade={"persist"})
-     * @Assert\Url
      */
     private $images;
 

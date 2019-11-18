@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Image;
 use App\Entity\Voiture;
+use App\Form\ImageType;
 use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

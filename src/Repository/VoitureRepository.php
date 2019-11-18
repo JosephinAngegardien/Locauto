@@ -19,6 +19,23 @@ class VoitureRepository extends ServiceEntityRepository
         parent::__construct($registry, Voiture::class);
     }
 
+    /**
+     * @return Voiture[]
+     */
+    public function findAllParMarque($marque): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT v
+            FROM App\Entity\Voiture v
+            WHERE v.marque = :marque'
+        )->setParameter('marque', $marque);
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
     // /**
     //  * @return Voiture[] Returns an array of Voiture objects
     //  */

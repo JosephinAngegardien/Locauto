@@ -103,6 +103,19 @@ class VoitureController extends AbstractController
         return $this->render('voitures/enregistrervoiture.html.twig', ['form' => $form->createView(), 'voiture' => $voiture]);
     }
 
+    /**
+     * @Route("/voitures/{marque}", name="voitures_marque")
+     */
+    public function voituresParMarque(Voiture $voiture){
+
+        $marque = $this->getMarque();
+
+        $voitures = $this->getDoctrine()
+        ->getRepository(Voiture::class)
+        ->findAllParMarque($marque);
+
+    }
+
 
 
 }
