@@ -17,16 +17,14 @@
 
         {% block navigation %}
         <header uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
-            <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar style="position: relative; z-index: 980;">
-                {# <div class="uk-navbar-left">
-                    <ul class="uk-navbar-nav">
-                        <li>
-                            <a href="#">
-                                <span class="uk-icon uk-margin-small-right" uk-icon="icon: camera"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div> #}
+            <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
+                <div class="uk-navbar-left">
+                    <div id="bloctitre">
+                        <div class="titre uk-animation-fade uk-panel">
+                            <h1 id="nomdusite">Locauto</h1>
+                        </div>
+                    </div>
+                </div>
                 <div class="uk-navbar-center">
                     <ul class="uk-navbar-nav">
                         <li>
@@ -53,7 +51,7 @@
                                 <div class="uk-navbar-dropdown">
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
                                         <li><a href="{{path ("modif_pro")}}">Modifier le profil</a></li>
-                                        {# <li><a href="{{path ("locations_pro")}}">Locations</a></li> #}
+                                        <li><a href="{{path ("locations_pro")}}">Locations</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -74,7 +72,7 @@
                             <a>Nos véhicules</a>
                             <div class="uk-navbar-dropdown">
                                 <ul class="uk-nav uk-navbar-dropdown-nav">
-                                    <li><a href="{{path ("liste_voitures")}}">Tous</a></li>
+                                    <li><a href="{{path ("liste_voitures")}}">Tous les véhicules</a></li>
                                     {# <li><a href="{{path ("voitures_marque")}}">Par marque</a></li> #}
                                 </ul>
                             </div>
@@ -106,14 +104,6 @@
             </nav>
         </header>
         {% endblock %}
-
-<div class="uk-child-width-expand@m uk-text-left" uk-grid>
-    <div>
-        <div class="titre uk-animation-fade uk-background-default uk-padding uk-panel">
-            <h1 id="nomdusite">Locauto</h1>
-        </div>
-    </div>
-</div>
 
         {% for message in app.flashes('warning') %}
             <div class="flash-warning">

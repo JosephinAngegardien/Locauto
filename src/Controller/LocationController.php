@@ -101,7 +101,15 @@ class LocationController extends AbstractController
      */
     public function pageParticulier()
     {
-        return $this->render('pages/locpart.html.twig');
+        return $this->render('pages/listeloc.html.twig');
+    }
+
+    /**
+     * @Route("/professionnel", name="locations_pro")
+     */
+    public function pageProfessionnel()
+    {
+        return $this->render('pages/listeloc.html.twig');
     }
 
 

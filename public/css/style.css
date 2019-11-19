@@ -2,7 +2,20 @@
 
 #nomdusite{
     font-family: 'Courgette', cursive;
-    font-size: 5em;
+    font-size: 3em;
+}
+#bloctitre{
+    padding-left: 10em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+body{
+    background-image: url("/images/route1.jpg");
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 /* #bodybase{
     margin: 0;
