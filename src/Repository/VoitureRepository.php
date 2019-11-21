@@ -19,22 +19,27 @@ class VoitureRepository extends ServiceEntityRepository
         parent::__construct($registry, Voiture::class);
     }
 
+
+
     /**
      * @return Voiture[]
      */
-    public function findAllParMarque($marque): array
+    public function voituresMarquesClassees(): array    //Méthode qui utilise le DQL
     {
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
             'SELECT v
             FROM App\Entity\Voiture v
-            WHERE v.marque = :marque'
-        )->setParameter('marque', $marque);
-
+            JOIN v.marque m
+            ORDER BY m.nom ASC'
+        );
         // returns an array of Product objects
         return $query->getResult();
+        
     }
+
+
 
     // /**
     //  * @return Voiture[] Returns an array of Voiture objects

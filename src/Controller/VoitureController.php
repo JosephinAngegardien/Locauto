@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Voiture;
+use App\Form\VoitureSearchType;
 use App\Form\VoitureType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -10,6 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Response as SymfonyResponse;
+use App\Entity\VoitureSearch;
 
 class VoitureController extends AbstractController
 {
@@ -58,18 +61,7 @@ class VoitureController extends AbstractController
      */
     public function listeVoitures() {
 
-        $voitures = $this->getDoctrine()->getRepository(Voiture::class)->findAll();
-
-        return $this->render('/voitures/listevoitures.html.twig', ['voitures' => $voitures]);
-    }
-
-    /**
-     * @Route("/listevoitures/categorie", name="liste_voitures_categorie")
-     */
-    public function listeVoituresParCategorie() {
-
-        $voitures = $this->getDoctrine()->getRepository(Voiture::class)->findAll();
-
+        $voitures = $this->getDoctrine()->getRepository(Voiture::class)->voituresMarquesClassees();
         return $this->render('/voitures/listevoitures.html.twig', ['voitures' => $voitures]);
     }
 
@@ -87,6 +79,7 @@ class VoitureController extends AbstractController
 
     /**
      * @Route("/modifvoiture/{slug}", name="modif_voiture")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function modifierVoiture(Voiture $voiture, Request $request, ObjectManager $manager){
         
@@ -104,15 +97,22 @@ class VoitureController extends AbstractController
     }
 
     /**
-     * @Route("/voitures/{marque}", name="voitures_marque")
+     * @Route("/voitures", name="recherche_voitures")
+     * 
+     * @return Response
      */
-    public function voituresParMarque(Voiture $voiture){
+    public function rechercheVoitures(Request $request){
 
-        $marque = $this->getMarque();
+        $search = new VoitureSearch;
+        $form = $this->createForm(VoitureSearchType::class, $search);
+        $form->handleRequest($request);
 
-        $voitures = $this->getDoctrine()
-        ->getRepository(Voiture::class)
-        ->findAllParMarque($marque);
+        $voitures = $this->getDoctrine()->getRepository(Voiture::class)->findAll();
+
+        return $this->render('/voitures/listevoitures.html.twig', [
+            'voitures' => $voitures,
+            'form' => $form->createView()
+            ]);
 
     }
 
