@@ -107,7 +107,7 @@
 
         {% for message in app.flashes('warning') %}
             <div class="flash-warning">
-                {{ message }}
+                <h3>{{ message }}</h3>
             </div>
         {% endfor %}
 
@@ -129,6 +129,12 @@
         
     </body>
 </html>
+
+
+
+
+{# Dans les formulaires, mettre des astérisques pour indiquer les champs obligatoires #}
+
 
 
 

@@ -70,10 +70,17 @@ class GeneralController extends AbstractController
      */
     public function supprAgence(Agence $agence, ObjectManager $manager) {
 
+        if(is_null($agence->getVoitures())){
+
         $manager->remove($agence);
         $manager->flush();
   
         return $this->redirectToRoute('liste_agences');
+        }
+        else{
+            return $this->redirectToRoute('liste_agences');
+            $this->addFlash("Avertissement", "Cette agence possède une ou plusieurs voitures.");
+        }
     }
 
     /**
@@ -171,10 +178,19 @@ class GeneralController extends AbstractController
      */
     public function supprImage(Image $image, ObjectManager $manager) {
 
+        if(is_null($image->getVoiture())){
+
         $manager->remove($image);
         $manager->flush();
   
         return $this->redirectToRoute('liste_images');
+
+        }
+
+        else{
+            return $this->redirectToRoute('liste_images');
+            $this->addFlash("Avertissement", "Cette image est liée à une voiture.");
+        }
     }
 
     /**
