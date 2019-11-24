@@ -4,27 +4,27 @@
 {% block title %}{{ parent() }} : reservation{% endblock %}
 
 {% block body %}
-<div class="formavecjs">
+<div class="uk-card uk-card-default uk-card-body uk-width-1-1">
 
-    <h2>Réservez le véhicule {{ voiture.reference }}, qui est une magnifique {{ voiture.marque }} {{ voiture.modele }}</h2>
+    <h3>Réservez le véhicule {{ voiture.reference }}, qui est une magnifique {{ voiture.marque }} {{ voiture.modele }}</h3>
 
     {{ form_start(form) }}
-        <fieldset class="uk-fieldset">
+
             <legend class="uk-legend">Réserver ce véhicule</legend>
+            <p>A quelles dates voudriez-vous louer le véhicule ?</p>
 
             <div class="uk-input">
-
-                <p>A quelles dates voudriez-vous louer le véhicule ?</p>
                 {{ form_row(form.debut) }}
+            </div>
+            <div class="uk-input">
                 {{ form_row(form.fin) }}
-
+            </div>
+            
                 <h4 class="">Montant de la location : <span id="montant">...</span> &euro;</h4>
                 <span id="jours">0</span> jour(s) à {{voiture.tarif | number_format(2, ',', ' ')}} &euro; par jour.
 
-                <button class="uk-button uk-button-primary">Enregistrement</button>
-            </div>
+            <button class="uk-button uk-button-primary">Enregistrement</button>
             
-        </fieldset>
     {{ form_end(form) }}
 
 </div>

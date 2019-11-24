@@ -42,7 +42,7 @@ class GeneralController extends AbstractController
             $manager->flush();
 
             $this->addFlash(
-                'success',
+                'message flash',
                 "L'agence de {$agence->getVille()} a bien été enregistrée !"
             );
 
@@ -79,7 +79,7 @@ class GeneralController extends AbstractController
         }
         else{
             return $this->redirectToRoute('liste_agences');
-            $this->addFlash("Avertissement", "Cette agence possède une ou plusieurs voitures.");
+            $this->addFlash("message flash", "Cette agence possède une ou plusieurs voitures.");
         }
     }
 
@@ -99,7 +99,7 @@ class GeneralController extends AbstractController
             $manager->flush();
 
             $this->addFlash(
-                'success',
+                'message flash',
                 "La marque {$marque->getNom()} a bien été enregistrée !"
             );
 
@@ -127,10 +127,18 @@ class GeneralController extends AbstractController
      */
     public function supprMarque(Marque $marque, ObjectManager $manager) {
 
+        if(is_null($marque->getVoitures())){
+
         $manager->remove($marque);
         $manager->flush();
   
         return $this->redirectToRoute('liste_marques');
+        }
+        else{
+            return $this->redirectToRoute('liste_marques');
+            $this->addFlash("message flash", "Il y a des véhicules de cette marque en base de données.");
+        }
+
     }
 
     /**
@@ -189,7 +197,7 @@ class GeneralController extends AbstractController
 
         else{
             return $this->redirectToRoute('liste_images');
-            $this->addFlash("Avertissement", "Cette image est liée à une voiture.");
+            $this->addFlash("message flash", "Cette image est liée à une voiture.");
         }
     }
 
@@ -209,7 +217,7 @@ class GeneralController extends AbstractController
             $manager->flush();
 
             $this->addFlash(
-                'success',
+                'message flash',
                 "L'agence de {$categorie->getNom()} a bien été enregistrée !"
             );
 
