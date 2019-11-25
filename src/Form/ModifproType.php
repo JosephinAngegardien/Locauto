@@ -17,10 +17,18 @@ class ModifproType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', TextType::class)
-            ->add('username', TextType::class)
-            ->add('siret', TextType::class)
-            ->add('raisonsociale', TextType::class)
+            ->add('email', TextType::class, [
+                'attr' => [ 'class' => 'uk-input']
+            ])
+            ->add('username', TextType::class, [
+                'attr' => [ 'class' => 'uk-input']
+            ])
+            ->add('siret', TextType::class, [
+                'attr' => [ 'class' => 'uk-input']
+            ])
+            ->add('raisonsociale', TextType::class, [
+                'attr' => [ 'class' => 'uk-input']
+            ])
         ;
     }
 

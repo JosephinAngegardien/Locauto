@@ -4,15 +4,26 @@
 {% block title %}{{ parent() }} : liste marques{% endblock %}
 
 {% block body %}
-<div class="formulaire">
-    <h1>Marques</h1>
-    <section>
-        {% for marque in marques %}
-            <div>{{ marque.nom|e }}</div>
-            {# <div><a class="" href="{{ path ("modif_marque",{'id':marque.id}) }}">Modifier</a></div> #}
-            <div><a class="" href="{{ path ("supprimer_marque",{'slug':marque.slug}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a></div>
-        {% endfor %}
-    </section>
+
+<div class="uk-card uk-card-body uk-text-center uk-padding uk-width-1-1">
+    <h2>Marques</h2>
 </div>
+
+<div uk-grid>
+
+        {% for marque in marques %}
+        <div class="uk-card uk-card-default uk-card-body uk-text-center uk-padding uk-width-1-4">
+            <div>
+                <h3>{{ marque.nom|e }}</h3>
+            </div>
+            {# <div><a class="" href="{{ path ("modif_marque",{'id':marque.id}) }}">Modifier</a></div> #}
+            <div>
+                <a class="uk-button uk-button-danger" href="{{ path ("supprimer_marque",{'slug':marque.slug}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>
+            </div>
+        </div>
+        {% endfor %}
+
+</div>
+
 {% endblock %}
 

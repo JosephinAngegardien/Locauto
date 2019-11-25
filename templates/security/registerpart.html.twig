@@ -3,51 +3,41 @@
 {% block title %}{{ parent() }} : inscription{% endblock %}
 
 {% block body %}
-<div class="uk-card uk-card-default uk-card-body uk-width-1-2">
+<div class="uk-card uk-card-default uk-card-body uk-width-1-3">
 
-        <div class="uk-card-title">
-            <h2>Inscription</h2>
-        </div>
 
-        <div>
-        {{ form_start(registrationForm) }}
-        <table>
-            <tr>
-                {# <td>{{ form_row(registrationForm.email) }}</td> #}
-                <td>{{ form_label(registrationForm.email, "Courriel") }}</td>
-                <td>{{ form_widget(registrationForm.email) }}</td>
-            </tr>
-            <tr>
-                {# <td>{{ form_row(registrationForm.email) }}</td> #}
-                <td>{{ form_label(registrationForm.prenom, "Prénom") }}</td>
-                <td>{{ form_widget(registrationForm.prenom) }}</td>
-            </tr>
-            <tr>
-                {# <td>{{ form_row(registrationForm.email) }}</td> #}
-                <td>{{ form_label(registrationForm.nom, "Nom") }}</td>
-                <td>{{ form_widget(registrationForm.nom) }}</td>
-            </tr>
-            <tr>
-                {# <td>{{ form_row(registrationForm.email) }}</td> #}
-                <td>{{ form_label(registrationForm.username, "Pseudonyme") }}</td>
-                <td>{{ form_widget(registrationForm.username) }}</td>
-            </tr>
-            <tr>
-                {# <td>{{ form_row(registrationForm.password.first, "Mot de passe (au moins huit caractères) ") }}</td> #}
-                <td>{{ form_label(registrationForm.password.first, "Mot de passe (au moins huit caractères) ") }}</td>
-                <td>{{ form_widget(registrationForm.password.first) }}</td>
-            </tr>
-            <tr>
-                {# <td>{{ form_row(registrationForm.password.second, "Confirmation du mot de passe ") }}</td> #}
-                <td>{{ form_label(registrationForm.password.second, "Confirmation du mot de passe ") }}</td>
-                <td>{{ form_widget(registrationForm.password.second) }}</td>
-            </tr>
-        </table>
+        {{ form_start(registrationForm, { 'attr' : { 'class' : 'uk-form-horizontal'}}) }}
 
-        <button class="">Enregistrement</button>
+            <h2 class="legend">Inscription</h2>
+
+            <div class="uk-margin">
+                {{ form_label(registrationForm.email, "Courriel") }}
+                {{ form_widget(registrationForm.email) }}
+            </div>
+            <div class="uk-margin">
+                {{ form_label(registrationForm.prenom, "Prénom") }}
+                {{ form_widget(registrationForm.prenom) }}
+            </div>
+            <div class="uk-margin">
+                {{ form_label(registrationForm.nom, "Nom") }}
+                {{ form_widget(registrationForm.nom) }}
+            </div>
+            <div class="uk-margin">
+                {{ form_label(registrationForm.username, "Pseudonyme") }}
+                {{ form_widget(registrationForm.username) }}
+            </div>
+            <div class="uk-margin">
+                {{ form_label(registrationForm.password.first, "Mot de passe (au moins huit caractères) ") }}
+                {{ form_widget(registrationForm.password.first) }}
+            </div>
+            <div class="uk-margin">
+                {{ form_label(registrationForm.password.second, "Confirmation du mot de passe ") }}
+                {{ form_widget(registrationForm.password.second) }}
+            </div>
+
+        <button class="uk-button uk-button-default">Enregistrement</button>
 
         {{ form_end(registrationForm) }}
-        </div>
 
 </div>
 {% endblock %}

@@ -13,9 +13,15 @@
      {% for cat in voiture.categories %}
           <p> - {{ cat }}</p>
      {% endfor %}
-     {% for im in voiture.images %}
-          <img src="{{ im.url }}">
-     {% endfor %}
+     <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade">
+          <ul class="uk-slideshow-items">
+          {% for im in voiture.images %}
+               <li>
+                    <img src="{{ im.url }}" alt="Ici devrait se trouver une photo." uk-cover>
+               </li>
+          {% endfor %}
+          </ul>
+     </div>
      <p>Disponible dans notre agence de {{ voiture.agence }}</p>
      <p>Tarif : {{ voiture.tarif }} € par jour</p>
      <p>Référence :  {{ voiture.reference }}</p>

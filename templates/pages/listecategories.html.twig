@@ -4,15 +4,23 @@
 {% block title %}{{ parent() }} : liste catégories{% endblock %}
 
 {% block body %}
-<div class="formulaire">
-    <h1>Catégories de véhicules</h1>
-    <section>
-        {% for categorie in categories %}
-            <div>{{ categorie.nom|e }}</div>
-            {# <div><a class="" href="{{ path ("modif_marque",{'id':marque.id}) }}">Modifier</a></div> #}
-            <div><a class="" href="{{ path ("supprimer_categorie",{'id':categorie.id}) }}" onclick="confirm('Supprimer ?')">Supprimer</a></div>
-        {% endfor %}
-    </section>
+
+<div class="uk-card uk-card-default uk-padding uk-text-center">
+    <h3>Catégories de véhicules</h3>
 </div>
+
+<div uk-grid>
+        {% for categorie in categories %}
+        <div class="uk-card uk-card-default uk-card-body uk-text-center uk-padding uk-width-1-4">
+            <div>
+                <h4>{{ categorie.nom|e }}</h4>
+            </div>
+            <div>
+                <a class="uk-button uk-button-danger" href="{{ path ("supprimer_categorie",{'id':categorie.id}) }}" onclick="confirm('Supprimer ?')">Supprimer</a>
+            </div>
+        </div>
+        {% endfor %}
+</div>
+
 {% endblock %}
 

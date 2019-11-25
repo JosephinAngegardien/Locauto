@@ -6,16 +6,16 @@
 {% block body %}
     
 {{ form_start(form) }}
-<div class="formulaire">
-    <fieldset class="uk-fieldset">
-        <legend class="uk-legend">Enregistrement d'une catégorie</legend>
+<div class="uk-card uk-card-default uk-card-body uk-text-center uk-padding uk-width-1-4">
 
-        <div class="uk-input">
+        <h3>Enregistrement d'une catégorie</h3>
+
+        <div class="uk-margin">
             {{ form_row(form.nom) }}
-            <button class="">Enregistrement</button>
         </div>
+
+        <button class="uk-button uk-button-primary">Enregistrement</button>
         
-    </fieldset>
 </div>
 {{ form_end(form) }}
 

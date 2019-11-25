@@ -17,10 +17,18 @@ class ModifpartType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', TextType::class)
-            ->add('username', TextType::class)
-            ->add('prenom', TextType::class)
-            ->add('nom', TextType::class)
+            ->add('email', TextType::class, [
+                'attr' => [ 'class' => 'uk-input']
+            ])
+            ->add('username', TextType::class, [
+                'attr' => [ 'class' => 'uk-input']
+            ])
+            ->add('prenom', TextType::class, [
+                'attr' => [ 'class' => 'uk-input']
+            ])
+            ->add('nom', TextType::class, [
+                'attr' => [ 'class' => 'uk-input']
+            ])
         ;
     }
 

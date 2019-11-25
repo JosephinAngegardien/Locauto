@@ -6,55 +6,26 @@
 
 <div class="uk-card uk-card-default uk-card-body uk-width-1-3">
 
-        {{ form_start(registrationForm) }}
+        {{ form_start(registrationForm, { 'attr' : { 'class' : 'uk-form-horizontal'}}) }}
 
-        <legend class="legend">Modifier mon profil</legend>
+            <h3 class="legend">Modifier mon profil</h3>
         
-        <div class="uk-input uk-margin">
-            {# {{ form_label(registrationForm.email, "Courriel") }} #}
+            <div class="uk-margin">
             {{ form_widget(registrationForm.email) }}
-        </div>
-        <div class="uk-margin">
-            {# {{ form_label(registrationForm.prenom, "Prénom") }} #}
+            </div>
+            <div class="uk-margin">
             {{ form_widget(registrationForm.prenom) }}
-        </div>
-        <div class="uk-margin">
-            {# {{ form_label(registrationForm.nom, "Nom") }} #}
+            </div>
+            <div class="uk-margin">
             {{ form_widget(registrationForm.nom) }}
-        </div>
-        <div class="uk-margin">
-            {# {{ form_label(registrationForm.username, "Pseudonyme") }} #}
+            </div>
+            <div class="uk-margin">
             {{ form_widget(registrationForm.username) }}
-        </div>
-
+            </div>
+        
         <button class="uk-button uk-button-default">Enregistrement</button>
 
         {{ form_end(registrationForm) }}
-
-</div>
-
-<div class="uk-card uk-card-default uk-card-body uk-width-1-3">
-
-    {{ form_start(registrationForm) }}
-
-        <legend class="legend">Modifier mon profil</legend>
-
-        <div class="uk-margin">
-            <input type="email" value="{{ form_widget(registrationForm.email) }}" class="uk-input" name="email" placeholder="{{ app.user.email }}">
-        </div>
-        <div class="uk-margin">
-            <input value="{{ form_row(registrationForm.prenom) }}" class="uk-input" name="prenom" placeholder="{{ app.user.prenom }}">
-        </div>
-        <div class="uk-margin">
-            <input value="{{ form_row(registrationForm.nom) }}" class="uk-input" name="nom" placeholder="{{ app.user.nom }}">
-        </div>
-        <div class="uk-margin">
-            <input value="{{ form_widget(registrationForm.username) }}" class="uk-input" name="username" placeholder="{{ app.user.username }}">
-        </div>
-
-        <button class="uk-button uk-button-default">Enregistrement</button>
-
-    {{ form_end(registrationForm) }}
 
 </div>
 

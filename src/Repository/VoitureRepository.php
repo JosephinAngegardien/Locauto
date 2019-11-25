@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Voiture;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\VoitureSearch;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Voiture|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,7 +20,43 @@ class VoitureRepository extends ServiceEntityRepository
         parent::__construct($registry, Voiture::class);
     }
 
+    public function findVoituresBySearch(VoitureSearch $search){
 
+        $marque = $search->getMarque();
+        $categorie = $search->getCategorie();
+        $agence = $search->getAgence();
+        $minTarif = $search->getMinTarif();
+        $maxTarif = $search->getMaxTarif();
+
+        $qb = $this->createQueryBuilder('v');
+
+        if($marque){
+            $qb->andWhere('v.marque = :mk')
+               ->setParameter('mk', $marque);
+        }
+        if($agence){
+            $qb->andWhere('v.agence = :ag')
+               ->setParameter('ag', $agence);
+        }
+        if($categorie){
+            $qb->innerJoin('v.categories', 'c', 'WITH', 'c = :cat')
+               ->setParameter('cat', $categorie);
+        }
+        if($maxTarif){
+            $qb->andWhere('v.tarif <= :mxt')
+                ->setParameter('mxt', $maxTarif);
+        }
+        if($minTarif){
+            $qb->andWhere('v.tarif >= :mnt')
+                ->setParameter('mnt', $minTarif);
+        }
+            
+        $qb->orderBy('v.marque', 'ASC');
+
+        return $qb->getQuery()
+                  ->getResult()
+        ;
+    }
 
     /**
      * @return Voiture[]

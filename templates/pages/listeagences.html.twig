@@ -4,15 +4,19 @@
 {% block title %}{{ parent() }} : liste agences{% endblock %}
 
 {% block body %}
-<div class="formulaire">
-    <h1>Agences</h1>
-    <section>
-        {% for agence in agences %}
-            <div>{{ agence.ville|e }}</div>
-            {# <div><a class="" href="{{ path ("modif_agence",{'id':agence.id}) }}">Modifier</a></div> #}
-            <div><a class="" href="{{ path ("supprimer_agence",{'id':agence.id}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a></div>
-        {% endfor %}
-    </section>
+
+<div uk-grid>
+    {% for agence in agences %}
+    <div class="uk-card uk-card-default uk-card-body uk-text-center uk-padding uk-width-1-4">
+        <div>
+            <h3>Agence de {{ agence.ville|e }}</h3>
+        </div>
+        <div>
+            <a class="uk-button uk-button-danger" href="{{ path ("supprimer_agence",{'id':agence.id}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>
+        </div>
+    </div>
+    {% endfor %}
 </div>
+
 {% endblock %}
 

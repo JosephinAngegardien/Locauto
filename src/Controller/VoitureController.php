@@ -103,16 +103,22 @@ class VoitureController extends AbstractController
      */
     public function rechercheVoitures(Request $request){
 
+        $voitures = null;
         $search = new VoitureSearch;
         $form = $this->createForm(VoitureSearchType::class, $search);
         $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
 
-        $voitures = $this->getDoctrine()->getRepository(Voiture::class)->findAll();
+        if($form->isSubmitted() && $form->isValid()){
+               
+            $voitures = $em->getRepository(Voiture::class)->findVoituresBySearch($search);
+
+        }
 
         return $this->render('/voitures/listevoitures.html.twig', [
+            'form' => $form->createView(),
             'voitures' => $voitures,
-            'form' => $form->createView()
-            ]);
+        ]);
 
     }
 

@@ -2,26 +2,18 @@
 
 namespace App\Entity;
 
+use App\Entity\Marque;
+
 class VoitureSearch{
 
-    /**
-     * @var int | null
-     */
     private $maxTarif;
 
-    /**
-     * @var string | null
-     */
+    private $minTarif;
+
     private $marque;
 
-    /**
-     * @var string | null
-     */
     private $categorie;
 
-    /**
-     * @var string | null
-     */
     private $agence;
 
 
@@ -66,7 +58,7 @@ class VoitureSearch{
      *
      * @return  self
      */ 
-    public function setMarque(string $marque)
+    public function setMarque(Marque $marque)
     {
         $this->marque = $marque;
 
@@ -90,7 +82,7 @@ class VoitureSearch{
      *
      * @return  self
      */ 
-    public function setCategorie(string $categorie)
+    public function setCategorie(Categorie $categorie)
     {
         $this->categorie = $categorie;
 
@@ -117,6 +109,26 @@ class VoitureSearch{
     public function setAgence(string $agence)
     {
         $this->agence = $agence;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of minTarif
+     */ 
+    public function getMinTarif()
+    {
+        return $this->minTarif;
+    }
+
+    /**
+     * Set the value of minTarif
+     *
+     * @return  self
+     */ 
+    public function setMinTarif($minTarif)
+    {
+        $this->minTarif = $minTarif;
 
         return $this;
     }
