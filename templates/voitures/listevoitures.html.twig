@@ -7,7 +7,7 @@
 
 {% if form is defined %}
 
-<div class="uk-card uk-card-default uk-card-body uk-width-1-3">
+<div class="uk-card uk-card-default uk-card-body uk-width-1-3 centrer">
 
         <h3 class="legend">Recherche avancée</h3>
 
@@ -73,6 +73,7 @@
         {% endif %} #}
         <div><a class="uk-button" href="{{ path ("voir_voiture",{'slug':voiture.slug}) }}">Voir cette voiture</a></div>
     </div>
+
     {% endfor %}
 
 </section>

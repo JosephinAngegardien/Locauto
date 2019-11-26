@@ -17,6 +17,11 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+.centrer{
+    margin:auto;
+}
+
+
 /* #bodybase{
     margin: 0;
     padding: 0;

@@ -40,16 +40,6 @@ class VoitureSearchType extends AbstractType
                 'choice_label' => 'nom',
                 'attr' => ['class' => 'uk-input']
             ])
-            ->add('categorie', EntityType::class, [
-                'class' => Categorie::class,
-                'required' => false,
-                'query_builder' => function (CategorieRepository $er) {
-                    return $er->createQueryBuilder('c')
-                        ->orderBy('c.nom', 'ASC');
-                },
-                'choice_label' => 'nom',
-                'attr' => ['class' => 'uk-input']
-            ])
             ->add('agence', EntityType::class, [
                 'class' => Agence::class,
                 'required' => false,
@@ -58,6 +48,16 @@ class VoitureSearchType extends AbstractType
                         ->orderBy('a.ville', 'ASC');
                 },
                 'choice_label' => 'ville',
+                'attr' => ['class' => 'uk-input']
+            ])
+            ->add('categorie', EntityType::class, [
+                'class' => Categorie::class,
+                'required' => false,
+                'query_builder' => function (CategorieRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.nom', 'ASC');
+                },
+                'choice_label' => 'nom',
                 'attr' => ['class' => 'uk-input']
             ])
         ;

@@ -4,24 +4,24 @@
 {% block title %}{{ parent() }} : voiture{% endblock %}
 
 {% block body %}
-<div class="uk-card uk-card-default uk-card-body uk-width-1-3">
+<div class="uk-card uk-card-default uk-card-body uk-text-center uk-width-1-2">
 
-     <h3 class="uk-card-title">{{ voiture.modele }}</h3>
+     <h3 class="uk-card-title">{{ voiture.marque ~ " " ~ voiture.modele }}</h3>
      
-     <p>Véhicule de marque {{ voiture.marque }}</p>
-     <p>Type(s) de véhicule :</p>
-     {% for cat in voiture.categories %}
-          <p> - {{ cat }}</p>
-     {% endfor %}
-     <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade">
-          <ul class="uk-slideshow-items">
-          {% for im in voiture.images %}
-               <li>
-                    <img src="{{ im.url }}" alt="Ici devrait se trouver une photo." uk-cover>
-               </li>
-          {% endfor %}
-          </ul>
-     </div>
+     <p>Catégorie(s) : {% for cat in voiture.categories %} {{ cat }}{% endfor %}</p>
+     
+               <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade">
+                    <ul class="uk-slideshow-items">
+                    {% for im in voiture.images %}
+                         <li>
+                              <img src="{{ im.url }}" alt="Ici devrait se trouver une photo." uk-cover>
+                         </li>
+                    {% endfor %}
+                    </ul>
+                    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+                    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+               </div>
+
      <p>Disponible dans notre agence de {{ voiture.agence }}</p>
      <p>Tarif : {{ voiture.tarif }} € par jour</p>
      <p>Référence :  {{ voiture.reference }}</p>

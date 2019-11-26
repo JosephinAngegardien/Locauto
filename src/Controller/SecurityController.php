@@ -147,7 +147,13 @@ class SecurityController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
+            $this->addFlash(
+                'Avertissement',
+                "La modification a été enregistrée."
+            );
+
             return $this->redirectToRoute('accueil', ['id' => $user->getID()]);
+
         }
 
         return $this->render('security/modifpart.html.twig', ['registrationForm' => $form->createView()]);
@@ -166,10 +172,45 @@ class SecurityController extends AbstractController
             $manager->persist($user);
             $manager->flush();
 
+            $this->addFlash(
+                'Avertissement',
+                "La modification a été enregistrée."
+            );
+
             return $this->redirectToRoute('accueil', ['id' => $user->getID()]);
         }
 
         return $this->render('security/modifpro.html.twig', ['registrationForm' => $form->createView()]);
+    }
+
+    public function index($name, \Swift_Mailer $mailer)
+    {
+        $message = (new \Swift_Message('Hello Email'))
+            ->setFrom('send@example.com')
+            ->setTo('recipient@example.com')
+            ->setBody(
+                $this->renderView(
+                    // templates/emails/registration.html.twig
+                    'emails/registration.html.twig',
+                    ['name' => $name]
+                ),
+                'text/html'
+            )
+
+            // you can remove the following code if you don't define a text version for your emails
+            ->addPart(
+                $this->renderView(
+                    // templates/emails/registration.txt.twig
+                    'emails/registration.txt.twig',
+                    ['name' => $name]
+                ),
+                'text/plain'
+            )
+        ;
+
+        $mailer->send($message);
+
+        // return $this->render(...);
     }
 
 

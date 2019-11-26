@@ -42,7 +42,7 @@ class LocationController extends AbstractController
             // Si les dates ne sont pas disponibles, message d'erreur
             if(!$loc->isBookableDates()) {
                 $this->addFlash(
-                    'message flash',
+                    'Avertissement',
                     "Les dates que vous avez choisies ne peuvent être réservées : elles sont déjà prises."
                 );
             } else {
@@ -85,7 +85,7 @@ class LocationController extends AbstractController
             $manager->flush();
 
             $this->addFlash(
-                'message flash',
+                'Avertissement',
                 "Votre commentaire a bien été pris en compte !"
             );
         }

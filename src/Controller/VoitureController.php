@@ -33,7 +33,7 @@ class VoitureController extends AbstractController
             $manager->flush();
 
             $this->addFlash(
-                'message flash',
+                'Avertissement',
                 "Le modèle {$voiture->getModele()} a bien été enregistré !"
             );
 

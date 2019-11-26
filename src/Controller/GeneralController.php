@@ -42,7 +42,7 @@ class GeneralController extends AbstractController
             $manager->flush();
 
             $this->addFlash(
-                'message flash',
+                'Avertissement',
                 "L'agence de {$agence->getVille()} a bien été enregistrée !"
             );
 
@@ -70,7 +70,7 @@ class GeneralController extends AbstractController
      */
     public function supprAgence(Agence $agence, ObjectManager $manager) {
 
-        if(is_null($agence->getVoitures())){
+        if(count($agence->getVoitures()) ==0 ){
 
         $manager->remove($agence);
         $manager->flush();
@@ -78,8 +78,8 @@ class GeneralController extends AbstractController
         return $this->redirectToRoute('liste_agences');
         }
         else{
+            $this->addFlash("Avertissement", "Cette agence possède une ou plusieurs voitures.");
             return $this->redirectToRoute('liste_agences');
-            $this->addFlash("message flash", "Cette agence possède une ou plusieurs voitures.");
         }
     }
 
@@ -99,7 +99,7 @@ class GeneralController extends AbstractController
             $manager->flush();
 
             $this->addFlash(
-                'message flash',
+                'Avertissement',
                 "La marque {$marque->getNom()} a bien été enregistrée !"
             );
 
@@ -127,16 +127,16 @@ class GeneralController extends AbstractController
      */
     public function supprMarque(Marque $marque, ObjectManager $manager) {
 
-        if(is_null($marque->getVoitures())){
+        if(count($marque->getVoitures()) == 0){
 
-        $manager->remove($marque);
-        $manager->flush();
-  
-        return $this->redirectToRoute('liste_marques');
+            $manager->remove($marque);
+            $manager->flush();
+    
+            return $this->redirectToRoute('liste_marques');
         }
         else{
-            return $this->redirectToRoute('liste_marques');
-            $this->addFlash("message flash", "Il y a des véhicules de cette marque en base de données.");
+            $this->addFlash("Avertissement", "Il y a des véhicules de cette marque en base de données.");
+            return $this->redirectToRoute('liste_marques'); 
         }
 
     }
@@ -217,7 +217,7 @@ class GeneralController extends AbstractController
             $manager->flush();
 
             $this->addFlash(
-                'message flash',
+                'Avertissement',
                 "L'agence de {$categorie->getNom()} a bien été enregistrée !"
             );
 
