@@ -4,7 +4,7 @@
 {% block title %}{{ parent() }} : liste loc.{% endblock %}
 
 {% block body %}
-<div class="uk-card uk-card-default uk-card-body uk-width-1-3">
+<div class="uk-card uk-card-default uk-card-body uk-width-1-3 centrer">
 
      <div>
         <h4>Les locations de <strong>{{app.user.username}}</strong></h4>
@@ -12,7 +12,7 @@
     {% for location in app.user.locations %}
             <div> {{ "Location N° " ~ location.id }} </div>
             <div>{{'du ' ~ location.debut | date('d-m-Y') ~ ' au ' ~ location.fin | date('d-m-Y') }}</div>
-            <div><em>{{ 'Votre véhicule : une superbe ' ~ location.voiture.marque ~" "~ location.voiture.modele }} </em></div>
+            <div class="uk-text-large uk-text-success">{{ 'Votre véhicule : une superbe ' ~ location.voiture.marque ~" "~ location.voiture.modele }}</div>
     {% else %}
      <div>
         <p><strong>{{app.user.username}}</strong> n'a pas encore loué de voiture chez <strong>Locauto</strong>.</p>

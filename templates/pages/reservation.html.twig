@@ -3,27 +3,32 @@
 
 {% block title %}{{ parent() }} : reservation{% endblock %}
 
-{% block body %}
-<div class="uk-card uk-card-default uk-card-body uk-width-1-1">
 
-    <h3>Réservez le véhicule {{ voiture.reference }}, qui est une magnifique {{ voiture.marque }} {{ voiture.modele }}</h3>
+{% block body %}
+<div class="uk-card uk-card-default uk-card-body uk-width-1-2 centrer">
 
     {{ form_start(form) }}
 
-            <legend class="uk-legend">Réserver ce véhicule</legend>
+            <h4>Réservez le véhicule {{ voiture.reference }}, qui est une magnifique {{ voiture.marque }} {{ voiture.modele }}.</h4>
             <p>A quelles dates voudriez-vous louer le véhicule ?</p>
 
-            <div class="uk-input">
-                {{ form_row(form.debut) }}
+            <div class="uk-margin">
+                {{ form_label(form.debut) }}
             </div>
-            <div class="uk-input">
-                {{ form_row(form.fin) }}
+            <div class="uk-margin">
+                {{ form_widget(form.debut) }}
+            </div>
+            <div class="uk-margin">
+                {{ form_label(form.fin) }}
+            </div>
+            <div class="uk-margin">
+                {{ form_widget(form.fin) }}
             </div>
             
-                <h4 class="">Montant de la location : <span id="montant">...</span> &euro;</h4>
-                <span id="jours">0</span> jour(s) à {{voiture.tarif | number_format(2, ',', ' ')}} &euro; par jour.
+            <h5>Montant de la location : <span id="montant">...</span> &euro;</h5>
+            <span id="jours">0</span> jour(s) à {{voiture.tarif | number_format(2, ',', ' ')}} &euro; par jour.
 
-            <button class="uk-button uk-button-primary">Enregistrement</button>
+            <button class="uk-button uk-button-default">Enregistrement</button>
             
     {{ form_end(form) }}
 
@@ -33,7 +38,7 @@
 {% block javascripts %}
 {{ parent() }}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script> #}
 
     <script>
         $(document).ready(function(){
@@ -47,6 +52,7 @@
                 debut: new Date()
             });
 
+            
             $('#location_debut, #location_fin').on('change', calculerMontant);
         });
 

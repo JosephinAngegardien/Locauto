@@ -3,17 +3,17 @@
 {% block title %}Réservation n° {{location.id}}{% endblock %}
 
 {% block body %}
-<div class="uk-card uk-card-default uk-card-body uk-width-1-3">
+<div class="uk-card uk-card-default uk-card-body uk-width-1-2 centrer">
 
     {# {% set ad = location.voiture.ad %}
     {% set author = location.user %} #}
 
     <div class="container">
-        <h2 class="">Votre réservation (n° de réservation : {{location.id}})</h2>
+        <h4 class="">Votre réservation (n° de réservation : {{location.id}})</h4>
 
         {% if app.request.query.get('withAlert') %}
             <div class="">
-                <h4>Votre réservation du véhicule {{ location.voiture.marque }} {{ location.voiture.modele }} a été prise en compte.</h4>
+                <h5>Votre réservation du véhicule {{ location.voiture.marque }} {{ location.voiture.modele }} a été prise en compte.</h5>
             </div>
         {% endif %}
 
