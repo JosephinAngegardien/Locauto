@@ -3,16 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\Voiture;
-use App\Form\VoitureSearchType;
 use App\Form\VoitureType;
+use App\Entity\Commentaire;
+use App\Entity\VoitureSearch;
+use App\Form\CommentaireType;
+use App\Form\VoitureSearchType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\BrowserKit\Response as SymfonyResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\BrowserKit\Response as SymfonyResponse;
-use App\Entity\VoitureSearch;
 
 class VoitureController extends AbstractController
 {
@@ -50,9 +52,33 @@ class VoitureController extends AbstractController
      * 
      * @return Response
      */
-    public function show(Voiture $voiture){
+    public function show(Voiture $voiture, Request $request, ObjectManager $manager){
+
+        if($this->getUser()){
+            $newComment = new Commentaire();
+            $newComment->setVoiture($voiture);
+            $newComment->setAuteur($this->getUser());
+            $form = $this->createForm(CommentaireType::class, $newComment);
+            $form->handleRequest($request);
+            if($form->isSubmitted() && $form->isValid()){
+
+                $manager->persist($newComment);
+                $manager->flush();
+    
+                $this->addFlash(
+                    'Avertissement',
+                    "Votre commentaire a été enregistré !"
+                );
+    
+                return $this->redirectToRoute('voir_voiture', ['slug' => $voiture->getSlug()]);
+            }
+            $form = $form->createView();
+        }
+        else $form = null;
+
         return $this->render('voitures/voirvoiture.html.twig', [
-            'voiture' => $voiture
+            'voiture' => $voiture,
+            'form' => $form
         ]);
     }
 

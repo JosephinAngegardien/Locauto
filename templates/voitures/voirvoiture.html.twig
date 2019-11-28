@@ -32,13 +32,40 @@
      </div>
      {% endif %}
 
-     {% if is_granted ("ROLE_USER") %}
+
      <div>
           <a class="uk-button uk-button-success" href="{{path ("louer_voiture",{'slug':voiture.slug})}}">Louer ce véhicule</a>
      </div>
-     {% endif %}
+    
 
 </div>
+<div class="uk-card uk-card-default uk-card-body uk-text-center uk-width-1-2 centrer">
+     <div>
+          {% if form is not null %}
+               {{ form_start(form) }}
+                    <div class="uk-margin">
+                    {{ form_row(form.note) }}
+                    </div>
+                    <div class="uk-margin">
+                    {{ form_row(form.contenu) }}
+                    </div>
+                    <div class="uk-margin">
+                         <button type="submit" class="uk-button uk-button-default">Enregistrer le commentaire</button>
+                    </div>
+               {{ form_end(form) }}
+          {% else %}
+               <p>Vous devez être connecté pour commenter. <a href="{{ path('login')}}">Connectez-vous !</a></p>
+          {% endif %}
+     </div>
+     <div>
+          {% for commentaire in voiture.commentaires %}
+               <p>{{ commentaire.auteur.username }}, le {{ commentaire.createdAt|date("d/m/Y")}} - {{ commentaire.contenu }}</p>
+          {% else %}
+               <p>Aucun commentaire actuellement</p>
+          {% endfor %}
+     </div>
+</div>
+
 {% endblock %}
 
 

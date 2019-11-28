@@ -25,8 +25,7 @@ class LocationType extends ApplicationType
         $builder
             ->add('debut', DateType::class, $this->getConfiguration("Début de la location :", "..."), ['attr' => [ 'class' => 'uk-input']])
             ->add('fin', DateType::class, $this->getConfiguration("Fin de la location :", "..."), ['attr' => [ 'class' => 'uk-input']])
-            // ->add('commentaire', TextareaType::class, $this->getConfiguration(false, "Vous pouvez donner
-            //  votre avis sur les services de Locauto", ["required" => false]))
+            
         ;
         // $builder->get('debut')->addModelTransformer($this->transformer);
         // $builder->get('fin')->addModelTransformer($this->transformer);

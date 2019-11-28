@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,6 +19,7 @@ class Professionnel extends User
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=14, max=14, minMessage="Un numéro siret comporte {{ limit }} chiffres.", maxMessage="Un numéro siret comporte {{ limit }} chiffres.")
      */
     private $siret;
 

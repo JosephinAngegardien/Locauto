@@ -11,28 +11,22 @@
             <h2 class="legend">Inscription</h2>
 
             <div class="uk-margin">
-                {{ form_label(registrationForm.email, "Courriel") }}
-                {{ form_widget(registrationForm.email) }}
+                {{ form_row(registrationForm.email) }}
             </div>
             <div class="uk-margin">
-                {{ form_label(registrationForm.prenom, "Prénom") }}
-                {{ form_widget(registrationForm.prenom) }}
+                {{ form_row(registrationForm.prenom) }}
             </div>
             <div class="uk-margin">
-                {{ form_label(registrationForm.nom, "Nom") }}
-                {{ form_widget(registrationForm.nom) }}
+                {{ form_row(registrationForm.nom) }}
             </div>
             <div class="uk-margin">
-                {{ form_label(registrationForm.username, "Pseudonyme") }}
-                {{ form_widget(registrationForm.username) }}
+                {{ form_row(registrationForm.username) }}
             </div>
             <div class="uk-margin">
-                {{ form_label(registrationForm.password.first, "Mot de passe (au moins huit caractères) ") }}
-                {{ form_widget(registrationForm.password.first) }}
+                {{ form_row(registrationForm.password.first) }}
             </div>
             <div class="uk-margin">
-                {{ form_label(registrationForm.password.second, "Confirmation du mot de passe ") }}
-                {{ form_widget(registrationForm.password.second) }}
+                {{ form_row(registrationForm.password.second) }}
             </div>
 
         <button class="uk-button uk-button-default">Enregistrement</button>

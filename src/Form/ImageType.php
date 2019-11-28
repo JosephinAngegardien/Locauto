@@ -6,15 +6,22 @@ use App\Entity\Image;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ImageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('legende')
-            ->add('url')
+            ->add('nom', TextType::class, [
+                'attr' => [ 'class' => 'uk-input']
+            ])
+            ->add('legende', TextType::class, [
+                'attr' => [ 'class' => 'uk-input']
+            ])
+            ->add('url', TextType::class, [
+                'attr' => [ 'class' => 'uk-input']
+            ])
             // ->add('alaune')
         ;
     }

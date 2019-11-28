@@ -15,8 +15,8 @@ class CommentaireType extends ApplicationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdAt')
-            ->add('note', IntegerType::class, $this->getConfiguration("Note sur 5", "Veuillez donner une note de 0 à 5", [
+            
+            ->add('note', IntegerType::class, $this->getConfiguration("Note sur 5 ", "Veuillez donner une note de 0 à 5", [
                 'attr' => [
                     'min' => 0,
                     'max' => 5,
@@ -24,8 +24,7 @@ class CommentaireType extends ApplicationType
                 ]
             ]))
             ->add('contenu', TextareaType::class, $this->getConfiguration("Votre avis ", "Avez-vous apprécié les services de Locauto ?"))
-            ->add('voiture')
-            ->add('auteur')
+           
         ;
     }
 

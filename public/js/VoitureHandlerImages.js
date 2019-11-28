@@ -1,12 +1,12 @@
 //création de 3 éléments HTMLElement
-var $addButtonimage = $('<button type="button" class="add_collection_link">Ajouter une image</button>');
-var $delButton = $('<button type="button" class="del_collection_link">Supprimer l\'image</button>');
+var $addButtonimage = $('<div class="uk-margin"><button type="button" class="uk-button uk-button-default">Ajouter une image</button></div>');
+var $delButton = $('<div class="uk-margin"><button type="button" class="uk-button uk-button-default">Supprimer l\'image</button></div>');
 //le premier élément li de la liste (celui qui contient le bouton 'ajouter')
 var $newLinkLiimage = $('<li></li>').append($addButtonimage);
 
 function generateDeleteButton($collection){
     var $btn = $delButton.clone();
-    $btn.on("click", function(){//événement clic du bouton supprimer
+    $btn.on("click", function(){            //événement clic du bouton supprimer
         $(this).parent("li").remove();
         $collection.data('index', $collection.data('index')-1)
 

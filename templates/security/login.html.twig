@@ -39,6 +39,11 @@
             Connexion
         </button>
     </form>
+    <h4>Vous n'êtes pas encore inscrit? INSCRIVEZ-VOUS :</h4>
+    <ul class="uk-nav uk-navbar-dropdown-nav">
+        <li><a href="{{path ("register_part")}}">Vous êtes un particulier</a></li>
+        <li><a href="{{path ("register_pro")}}">Vous êtes un professionnel</a></li>
+    </ul>
 
 </div>
 {% endblock %}
