@@ -33,21 +33,21 @@
      {% endif %}
 
 
-     <div>
-          <a class="uk-button uk-button-success" href="{{path ("louer_voiture",{'slug':voiture.slug})}}">Louer ce véhicule</a>
+     <div class="uk-margin-bottom">
+          <a class="uk-button uk-button-secondary uk-button-large" href="{{path ("louer_voiture",{'slug':voiture.slug})}}">Louer ce véhicule</a>
      </div>
     
+     <p class="uk-text-large">Vous avez loué ce véhicule ? A présent, dites-nous si vous avez apprécié cette aventure.</p>
 
-</div>
-<div class="uk-card uk-card-default uk-card-body uk-text-center uk-width-1-2 centrer">
+
      <div>
           {% if form is not null %}
                {{ form_start(form) }}
                     <div class="uk-margin">
-                    {{ form_row(form.note) }}
+                         {{ form_row(form.note) }}
                     </div>
                     <div class="uk-margin">
-                    {{ form_row(form.contenu) }}
+                         {{ form_row(form.contenu) }}
                     </div>
                     <div class="uk-margin">
                          <button type="submit" class="uk-button uk-button-default">Enregistrer le commentaire</button>
@@ -57,13 +57,22 @@
                <p>Vous devez être connecté pour commenter. <a href="{{ path('login')}}">Connectez-vous !</a></p>
           {% endif %}
      </div>
-     <div>
+     <div>{% if voiture.commentaires %}
+               <p class="uk-text-large">Ils ont déjà donné leur avis ...</p>
+          {% endif %}
           {% for commentaire in voiture.commentaires %}
-               <p>{{ commentaire.auteur.username }}, le {{ commentaire.createdAt|date("d/m/Y")}} - {{ commentaire.contenu }}</p>
+               <p>{{ commentaire.auteur.username }}, le {{ commentaire.createdAt|date("d/m/Y")}}</p>
+               <div>
+                    <p>Note : <span class="uk-text-success">{{ commentaire.note }}</span>/5</p>
+               </div>
+               <div>
+                    <p><span class="uk-text-success">{{ commentaire.contenu }}</span></p>
+               </div>
           {% else %}
-               <p>Aucun commentaire actuellement</p>
+               <p>Aucun avis n'a été publié au sujet de ce véhicule.</p>
           {% endfor %}
      </div>
+
 </div>
 
 {% endblock %}

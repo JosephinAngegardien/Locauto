@@ -16,14 +16,17 @@ class CommentaireType extends ApplicationType
     {
         $builder
             
-            ->add('note', IntegerType::class, $this->getConfiguration("Note sur 5 ", "Veuillez donner une note de 0 à 5", [
+            ->add('note', IntegerType::class, $this->getConfiguration("Note sur 5", "Veuillez donner une note de 0 à 5", [
                 'attr' => [
                     'min' => 0,
                     'max' => 5,
-                    'step' => 1
+                    'step' => 1,
+                    'class' => 'uk-input'
                 ]
             ]))
-            ->add('contenu', TextareaType::class, $this->getConfiguration("Votre avis ", "Avez-vous apprécié les services de Locauto ?"))
+            ->add('contenu', TextareaType::class, $this->getConfiguration("Donnez votre avis ", "Avez-vous apprécié les services de Locauto ?",[
+                'attr' => ['class' => 'uk-input']
+            ]))
            
         ;
     }
