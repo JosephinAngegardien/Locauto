@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{ parent() }} : liste voitures{% endblock %}
+
+
+{% block body %}
+
+<section class="uk-grid-large uk-child-width-1-3@m uk-text-center" uk-grid>
+    <div>
+        {% include 'voitures/filter.html.twig' with {form: form} only %}
+    </div>
+    <div>
+        {% for voiture in voitures %}
+            {% include 'voitures/card.html.twig' with {voiture: voiture} only %}
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
+
+
+

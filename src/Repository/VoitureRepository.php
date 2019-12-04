@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Voiture;
 use App\Entity\VoitureSearch;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -76,6 +77,46 @@ class VoitureRepository extends ServiceEntityRepository
         
     }
 
+
+    /**
+     *@return Voiture[]
+     */
+    public function findSearch(SearchData $search): array
+    {
+
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('c', 'p')
+            ->join('p.categories', 'c')
+        ;
+        if(!empty($search->q)){
+            $query = $query
+                        ->andWhere('p.marque LIKE :q')
+                        ->setParameter('q', "%{$search->q}%")
+        ;
+        }
+        if(!empty($search->min)){
+            $query = $query
+                        ->andWhere('p.tarif >= :min')
+                        ->setParameter('min', $search->min)
+        ;
+        }
+        if(!empty($search->max)){
+            $query = $query
+                        ->andWhere('p.tarif <= :max')
+                        ->setParameter('max', $search->max)
+        ;
+        }
+        if(!empty($search->categories)){
+            $query = $query
+                        ->andWhere('c.id IN (:categories)')
+                        ->setParameter('categories', $search->categories)
+        ;
+        }
+
+        return $query->getQuery()->getResult();
+
+    }
 
 
     // /**

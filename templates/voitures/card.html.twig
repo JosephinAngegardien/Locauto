@@ -1,0 +1,32 @@
+
+
+<div>
+     <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade">
+
+        <ul class="uk-slideshow-items">
+            {% for im in voiture.images %}
+            <li>
+                <img src="{{ im.url }}" alt="Ici devrait se trouver une photo." uk-cover>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+
+    </div>
+    <div>
+        <h5>{{ voiture.marque }} {{ voiture.modele }}</h5>
+    </div>
+    <div>
+        {{ voiture.tarif }}
+    </div>
+    <div>
+        {% for c in voiture.categories %}
+            <p>#{{ c.nom }}</p>
+        {% endfor %}
+    </div>
+</div>
+
+
+
