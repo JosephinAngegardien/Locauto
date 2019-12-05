@@ -23,7 +23,8 @@ class GeneralController extends AbstractController
      */
     public function accueil()
     {
-        return $this->render('accueil.html.twig');
+        $images = $this->getDoctrine()->getRepository(Image::class)->findAll();
+        return $this->render('accueil.html.twig', ['images' => $images]);
     }
 
     /**
@@ -56,6 +57,7 @@ class GeneralController extends AbstractController
 
     /**
      * @Route("/listeagences", name="liste_agences")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function listeAgences() {
 
@@ -113,6 +115,7 @@ class GeneralController extends AbstractController
 
     /**
      * @Route("/listemarques", name="liste_marques")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function listeMarques() {
 
@@ -155,11 +158,6 @@ class GeneralController extends AbstractController
 
             $manager->persist($image);
             $manager->flush();
-
-            // $this->addFlash(
-            //     'success',
-            //     "L'agence de {$agence->getVille()} a bien été enregistrée !"
-            // );
 
             return $this->redirectToRoute('liste_images');
         }
@@ -231,6 +229,7 @@ class GeneralController extends AbstractController
 
     /**
      * @Route("/listecategories", name="liste_categories")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function listeCategories() {
 

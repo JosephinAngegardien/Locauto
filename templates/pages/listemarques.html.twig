@@ -6,20 +6,34 @@
 {% block body %}
 
 <div class="uk-card uk-card-body uk-text-center uk-padding uk-width-1-2 centrer">
-    <h2>Marques</h2>
+    <h2>Liste des marques</h2>
 </div>
 
 <div uk-grid>
 
         {% for marque in marques %}
-        <div class="uk-card uk-card-default uk-card-body uk-text-center uk-padding uk-width-1-4">
+        <div class="uk-card uk-card-default uk-card-body uk-text-center uk-width-1-6">
             <div>
                 <h3>{{ marque.nom|e }}</h3>
             </div>
-            {# <div><a class="" href="{{ path ("modif_marque",{'id':marque.id}) }}">Modifier</a></div> #}
+            {% if marque.voitures|length == 0 %}
             <div>
-                <a class="uk-button uk-button-danger" href="{{ path ("supprimer_marque",{'slug':marque.slug}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>
+                <p>Aucun véhicule</p>
             </div>
+            {% elseif marque.voitures|length == 1 %}
+            <div>
+                <p>1 véhicule</p>
+            </div>
+            {% else %}
+            <div>
+                <p>{{ marque.voitures|length }} véhicules</p>
+            </div>
+            {% endif %}
+            {% if marque.voitures|length == 0 %}
+            <div>
+                <a class="uk-button uk-button-danger uk-button-small" href="{{ path ("supprimer_marque",{'slug':marque.slug}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>
+            </div>
+            {% endif %}
         </div>
         {% endfor %}
 

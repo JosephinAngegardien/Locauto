@@ -6,8 +6,8 @@
 }
 #bloctitre{
     padding-left: 4vw;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    /* padding-top: 1em;
+    padding-bottom: 1em; */
 }
 body{
     background-image: url("/images/route1.jpg");
@@ -20,9 +20,48 @@ body{
 .centrer{
     margin:auto;
     margin-top: 1em;
+    margin-bottom: 1em;
     border-radius: 0.8em;
     background-color: cornsilk;
 }
+.centrer2{
+    margin:auto;
+    margin-top: 3em;
+    border-radius: 0.8em;
+}
+
+@media screen and (max-width: 1150px) {
+    #nomdusite{
+        font-family: 'Courgette', cursive;
+        font-size: 2em;
+        /* color: transparent; */
+    }
+    .centrer2{
+        margin:auto;
+        margin-top: 12vh;
+        border-radius: 0.8em;
+    }
+
+}
+
+@media screen and (max-width: 985px) {
+    #nomdusite{
+        font-family: 'Courgette', cursive;
+        font-size: 1em;
+        /* color: transparent; */
+    }
+
+}
+
+@media screen and (max-width: 690px) {
+    #nomdusite{
+        font-family: 'Courgette', cursive;
+        color: transparent;
+    }
+
+}
+
+
 
 
 /* #bodybase{

@@ -11,12 +11,12 @@
 
 <div uk-grid>
         {% for categorie in categories %}
-        <div class="uk-card uk-card-default uk-card-body uk-text-center uk-padding uk-width-1-4">
+        <div class="uk-card uk-card-default uk-card-body uk-text-center uk-padding uk-width-1-6">
             <div>
                 <h4>{{ categorie.nom|e }}</h4>
             </div>
             <div>
-                <a class="uk-button uk-button-danger" href="{{ path ("supprimer_categorie",{'id':categorie.id}) }}" onclick="confirm('Supprimer ?')">Supprimer</a>
+                <a class="uk-button uk-button-danger uk-button-small" href="{{ path ("supprimer_categorie",{'id':categorie.id}) }}" onclick="confirm('Supprimer ?')">Supprimer</a>
             </div>
         </div>
         {% endfor %}

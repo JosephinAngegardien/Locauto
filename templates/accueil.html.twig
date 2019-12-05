@@ -5,7 +5,30 @@
 
 
 {% block body %}
+<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m centrer2">  {# De "card" #}
 
+    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="autoplay: true">    {# De "slideshow" #}
+
+        <ul class="uk-slideshow-items">
+            <li>
+                <img src="images/route2.jpg" alt="" uk-cover>
+            </li>
+            <li>
+                <img src="images/route1.jpg" alt="" uk-cover>
+            </li>
+            {% for image in images %}
+            <li>
+                <img src="{{ image.url }}" alt="" uk-cover>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+
+    </div>
+
+</div>
 {% endblock %}
 
 

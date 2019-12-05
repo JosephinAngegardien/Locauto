@@ -12,7 +12,7 @@
             <h3>Agence de {{ agence.ville|e }}</h3>
         </div>
         <div>
-            <a class="uk-button uk-button-danger" href="{{ path ("supprimer_agence",{'id':agence.id}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>
+            <a class="uk-button uk-button-danger uk-button-small" href="{{ path ("supprimer_agence",{'id':agence.id}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>
         </div>
     </div>
     {% endfor %}

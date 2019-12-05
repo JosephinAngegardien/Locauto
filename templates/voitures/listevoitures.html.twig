@@ -44,14 +44,11 @@
 
 {% endif %}
 {% if voitures is defined %}
-<section class="uk-grid-large uk-child-width-1-3@m uk-text-center" uk-grid>
+<section class="uk-grid-collapse" uk-grid>
 
     {% for voiture in voitures %}
-    <div class="uk-card uk-card-secondary uk-card-body">
-        <div>
-
+    <div class="uk-card uk-card-secondary uk-card-body uk-text-center uk-width-1-4">
         <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade">
-
             <ul class="uk-slideshow-items">
                 {% for im in voiture.images %}
                 <li>
@@ -59,19 +56,20 @@
                 </li>
                 {% endfor %}
             </ul>
-
             <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
             <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
-
         </div>
-
-    </div>
-        {# <img data-src="{{ voiture.images | first }}" width="360" height="240" alt="Photo" uk-img> #}
-        <div class="uk-card-title">{{ voiture.marque|e }} {{ voiture.modele|e }}</div>
-        {# {% if is_granted ("ROLE_ADMIN") %}
-        <div><a class="uk-button uk-button-danger" href="{{ path ("supprimer_voiture",{'slug':voiture.slug}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a></div>
-        {% endif %} #}
-        <div><a class="uk-button" href="{{ path ("voir_voiture",{'slug':voiture.slug}) }}">Voir cette voiture</a></div>
+        <div class="uk-card-title">
+            {{ voiture.marque|e }} {{ voiture.modele|e }}
+        </div>
+        <div>
+            <a class="uk-button" href="{{ path ("voir_voiture",{'slug':voiture.slug}) }}">Voir cette voiture</a>
+        </div>
+        {% if is_granted ("ROLE_ADMIN") %}
+        <div>
+            <a class="uk-button uk-button-danger uk-button-small" href="{{ path ("supprimer_voiture",{'slug':voiture.slug}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>
+        </div>
+        {% endif %}
     </div>
 
     {% endfor %}
