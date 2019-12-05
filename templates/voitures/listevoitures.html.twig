@@ -47,6 +47,7 @@
 <section class="uk-grid-collapse" uk-grid>
 
     {% for voiture in voitures %}
+
     <div class="uk-card uk-card-secondary uk-card-body uk-text-center uk-width-1-4">
         <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade">
             <ul class="uk-slideshow-items">
@@ -70,6 +71,7 @@
             <a class="uk-button uk-button-danger uk-button-small" href="{{ path ("supprimer_voiture",{'slug':voiture.slug}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>
         </div>
         {% endif %}
+
     </div>
 
     {% endfor %}

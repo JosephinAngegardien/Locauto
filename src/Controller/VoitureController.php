@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Voiture;
+use App\Data\SearchData;
+use App\Form\SearchForm;
 use App\Form\VoitureType;
 use App\Entity\Commentaire;
 use App\Entity\VoitureSearch;
 use App\Form\CommentaireType;
 use App\Form\VoitureSearchType;
+use App\Repository\VoitureRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
@@ -144,6 +147,24 @@ class VoitureController extends AbstractController
         return $this->render('/voitures/listevoitures.html.twig', [
             'form' => $form->createView(),
             'voitures' => $voitures,
+        ]);
+
+    }
+
+    /**
+     * @Route("/voitures2", name="recherche_voitures2")
+     */
+    public function index(VoitureRepository $repository, Request $request)
+    {
+
+        $data = new SearchData();
+        $form = $this->createForm(SearchForm::class, $data);
+        $form->handleRequest($request);
+        $voitures = $repository->findSearch($data);
+
+        return $this->render('/voitures/listevoitures2.html.twig', [
+            'voitures' => $voitures,
+            'form' => $form->createView()
         ]);
 
     }
