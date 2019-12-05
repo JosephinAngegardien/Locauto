@@ -28,7 +28,7 @@ class ProfessionnelType extends AbstractType
             ])
             ->add("siret", TextType::class,  [
                 'attr' => [ 'class' => 'uk-input'],
-                'label' => 'Numéro siret'
+                'label' => 'Numéro siret (quatorze chiffres)'
             ])
             ->add("raisonsociale", TextType::class,  [
                 'attr' => [ 'class' => 'uk-input'],
@@ -39,7 +39,7 @@ class ProfessionnelType extends AbstractType
                 'invalid_message' => 'Il faut écrire deux fois le même mot de passe.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['attr' => [ 'class' => 'uk-input'], 'label' => 'Mot de passe'],
+                'first_options'  => ['attr' => [ 'class' => 'uk-input'], 'label' => 'Mot de passe (au moins huit caractères)'],
                 'second_options' => ['attr' => [ 'class' => 'uk-input'], 'label' => 'Ecrivez à nouveau le mot de passe'],
                 'constraints' => [
                     new NotBlank([

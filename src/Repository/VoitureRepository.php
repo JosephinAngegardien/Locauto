@@ -77,15 +77,15 @@ class VoitureRepository extends ServiceEntityRepository
         
     }
 
-    /**
-     * @return Voiture[]
-     */
-    public function voituresHasard(): array
-    {
+    // /**
+    //  * @return Voiture[]
+    //  */
+    // public function voituresHasard(): array
+    // {
         
 
 
-    }
+    // }
 
     /**
      *@return Voiture[]

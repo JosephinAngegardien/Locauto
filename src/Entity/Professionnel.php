@@ -20,6 +20,7 @@ class Professionnel extends User
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=14, max=14, minMessage="Un numéro siret comporte {{ limit }} chiffres.", maxMessage="Un numéro siret comporte {{ limit }} chiffres.")
+     *  @Assert\Regex(pattern="#[0-9]{14}#", message="Un numéro siret ne comporte que des chiffres")
      */
     private $siret;
 

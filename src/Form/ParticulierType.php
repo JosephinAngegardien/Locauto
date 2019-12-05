@@ -39,7 +39,7 @@ class ParticulierType extends AbstractType
                 'invalid_message' => 'Il faut écrire deux fois le même mot de passe.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['attr' => [ 'class' => 'uk-input'], 'label' => 'Mot de passe'],
+                'first_options'  => ['attr' => [ 'class' => 'uk-input'], 'label' => 'Mot de passe (au moins huit caractères)'],
                 'second_options' => ['attr' => [ 'class' => 'uk-input'], 'label' => 'Ecrivez à nouveau le mot de passe'],
                 'constraints' => [
                     new NotBlank([
