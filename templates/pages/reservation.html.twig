@@ -11,19 +11,25 @@
 
             <h4>Réservez le véhicule {{ voiture.reference }}, qui est une magnifique {{ voiture.marque }} {{ voiture.modele }}.</h4>
             <p>A quelles dates voudriez-vous louer le véhicule ?</p>
-
-            <div class="uk-margin">
-                {{ form_label(form.debut) }}
-            </div>
-            <div class="uk-margin">
-                {{ form_widget(form.debut) }}
-            </div>
-            <div class="uk-margin">
-                {{ form_label(form.fin) }}
-            </div>
-            <div class="uk-margin">
-                {{ form_widget(form.fin) }}
-            </div>
+            <section id="dates-reservation">
+                <div class="date-res-widget">
+                    <div class="uk-margin">
+                        {{ form_label(form.debut) }}
+                    </div>
+                    <div class="uk-margin">
+                        {{ form_widget(form.debut) }}
+                    </div>
+                </div>
+                <div class="date-res-widget">
+                    <div class="uk-margin">
+                        {{ form_label(form.fin) }}
+                    </div>
+                    <div class="uk-margin">
+                        {{ form_widget(form.fin) }}
+                    </div>
+                </div>
+            </section>
+            
             
             <h5>Montant de la location : <span id="montant">...</span> &euro;</h5>
             <span id="jours">0</span> jour(s) à {{voiture.tarif | number_format(2, ',', ' ')}} &euro; par jour.
@@ -38,7 +44,7 @@
 {% block javascripts %}
 {{ parent() }}
 
-    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script> #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
 
     <script>
         $(document).ready(function(){
@@ -48,10 +54,10 @@
                     {% for day in voiture.notAvailableDays %}
                         "{{ day.format('d/m/Y') }}",
                     {% endfor %}
-                ],
+                ].sort(),
                 debut: new Date()
             });
-
+            console.log($('#location_debut, #location_fin'))
             
             $('#location_debut, #location_fin').on('change', calculerMontant);
         });

@@ -30,6 +30,12 @@ body{
     border-radius: 0.8em;
 }
 
+#dates-reservation{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
 @media screen and (max-width: 1150px) {
     #nomdusite{
         font-family: 'Courgette', cursive;

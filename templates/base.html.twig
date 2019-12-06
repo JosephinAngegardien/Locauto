@@ -141,6 +141,12 @@
 {# Dans les formulaires, mettre des astérisques pour indiquer les champs obligatoires #}
 
 
+{#s @Assert\Regex(pattern="#[a-z]{1,}[A-Z]{1,}|[a-z]{1,}[1-9]{1,}|[a-z]{1,}[\#\/\+\=\&\%]{1,}|[A-Z]{1,}[1-9]{1,}|
+    [A-Z]{1,}[\#\/\+\=\&\%]{1,}|[1-9]{1,}[\#\/\+\=\&\%]{1,}#", message="Le format n'est pas respecté.") #}
+
+
+{# Calendrier avec les disponibilités de la voiture #}
+
 
 
 

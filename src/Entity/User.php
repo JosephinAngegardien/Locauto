@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\InheritanceType;
@@ -9,6 +10,7 @@ use Doctrine\ORM\Mapping\DiscriminatorMap;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -39,6 +41,7 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Regex(pattern="#[a-z]{1,}[A-Z]{1,}|[a-z]{1,}[1-9]{1,}|[a-z]{1,}[\#\/\+\=\&\%]{1,}|[A-Z]{1,}[1-9]{1,}|[A-Z]{1,}[\#\/\+\=\&\%]{1,}|[1-9]{1,}[\#\/\+\=\&\%]{1,}#", message="Le format n'est pas respecté.")
      */
     private $password;
 
