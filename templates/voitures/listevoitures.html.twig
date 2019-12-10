@@ -18,19 +18,22 @@
                 {{ form_widget(form.marque) }}
             </div>
             <div class="uk-margin">
-                {{ form_label(form.categorie, "Catégorie") }}
+                {{ form_label(form.categorie, "Catégories") }}
                 {{ form_widget(form.categorie) }}
             </div>
+            {# <div class="uk-margin">
+                {{ form_row(form.categorie) }}
+            </div> #}
             <div class="uk-margin">
                 {{ form_label(form.agence, "Agence") }}
                 {{ form_widget(form.agence) }}
             </div>
             <div class="uk-margin">
-                {{ form_label(form.minTarif, "Tarif maximum") }}
+                {{ form_label(form.minTarif, "Tarif minimum") }}
                 {{ form_widget(form.minTarif) }}
             </div>
             <div class="uk-margin">
-                {{ form_label(form.maxTarif, "Tarif minimum") }}
+                {{ form_label(form.maxTarif, "Tarif maximum") }}
                 {{ form_widget(form.maxTarif) }}
             </div>
 
@@ -48,7 +51,7 @@
 
     {% for voiture in voitures %}
 
-    <div class="uk-card uk-card-secondary uk-card-body uk-text-center uk-width-1-4">
+    <div class="uk-card uk-card-secondary uk-card-body uk-text-center uk-width-1-4@m">
         <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade">
             <ul class="uk-slideshow-items">
                 {% for im in voiture.images %}
@@ -60,21 +63,27 @@
             <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
             <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
         </div>
-        <div class="uk-card-title">
+        <div class="uk-card-title uk-margin">
             {{ voiture.marque|e }} {{ voiture.modele|e }}
         </div>
         <div>
-            <a class="uk-button" href="{{ path ("voir_voiture",{'slug':voiture.slug}) }}">Voir cette voiture</a>
+            <a class="uk-button uk-button-default uk-margin" href="{{ path ("voir_voiture",{'slug':voiture.slug}) }}">Voir cette voiture</a>
         </div>
         {% if is_granted ("ROLE_ADMIN") %}
         <div>
-            <a class="uk-button uk-button-danger uk-button-small" href="{{ path ("supprimer_voiture",{'slug':voiture.slug}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>
+            <a class="uk-button uk-button-danger uk-button-small uk-margin" href="{{ path ("supprimer_voiture",{'slug':voiture.slug}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>
         </div>
         {% endif %}
 
     </div>
 
     {% endfor %}
+
+    {% if voitures | length == 0 %}
+    <div class="uk-card uk-card-default uk-card-body uk-width-1-3 centrer">
+        <h4>Aucun véhicule ne répond à vos critères de recherche.</h4>
+    </div>
+    {% endif %}
 
 </section>
 {% endif %}

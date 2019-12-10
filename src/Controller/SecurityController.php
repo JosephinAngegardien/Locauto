@@ -17,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -182,6 +183,18 @@ class SecurityController extends AbstractController
 
         return $this->render('security/modifpro.html.twig', ['registrationForm' => $form->createView()]);
     }
+
+    /**
+     * @Route("/listutilisateurs", name="liste_utilisateurs")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function listeUtilisateurs() {
+
+        $utilisateurs = $this->getDoctrine()->getRepository(User::class)->findAll();
+
+        return $this->render('/security/listutilisateurs.html.twig', ['utilisateurs' => $utilisateurs]);
+    }
+
 
     public function index($name, \Swift_Mailer $mailer)
     {

@@ -5,9 +5,13 @@
 
 {% block body %}
 
-<div uk-grid>
+<div class="uk-card uk-card-default uk-padding uk-text-center uk-width-1-1 colorer">
+    <h2>Nos agences</h2>
+</div>
+
+<div class="uk-grid-collapse" uk-grid>
     {% for agence in agences %}
-    <div class="uk-card uk-card-default uk-card-body uk-text-center uk-padding uk-width-1-4 centrer">
+    <div class="uk-card uk-card-default uk-card-body uk-text-center uk-padding uk-width-1-3@s">
         <div>
             <h3>Agence de {{ agence.ville|e }}</h3>
         </div>

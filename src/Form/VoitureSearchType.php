@@ -52,6 +52,7 @@ class VoitureSearchType extends AbstractType
             ])
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
+                'label' => false,
                 'required' => false,
                 'query_builder' => function (CategorieRepository $er) {
                     return $er->createQueryBuilder('c')
@@ -60,6 +61,13 @@ class VoitureSearchType extends AbstractType
                 'choice_label' => 'nom',
                 'attr' => ['class' => 'uk-input']
             ])
+            // ->add('categorie', EntityType::class, [
+            //     "multiple" => true,
+            //     "expanded" => true,
+            //     'class' => Categorie::class,
+            //     'label' => false,
+            //     'required' => false
+            // ])
         ;
     }
 

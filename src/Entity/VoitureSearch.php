@@ -106,7 +106,7 @@ class VoitureSearch{
      *
      * @return  self
      */ 
-    public function setAgence(string $agence)
+    public function setAgence(Agence $agence)
     {
         $this->agence = $agence;
 

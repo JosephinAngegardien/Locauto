@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
+use App\Entity\Commentaire;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\Collection;
@@ -303,6 +305,20 @@ class Voiture
         }
 
         return $this;
+    }
+
+    /**
+     * Permet de récupérer le commentaire d'un auteur au sujet d'un véhicule
+     *
+     * @param User $author
+     * @return Commentaire|null
+     */
+    public function getCommentFromAuthor(User $auteur){
+        foreach($this->commentaires as $comment) {
+            if($comment->getAuteur() === $auteur) return $comment;
+        }
+
+        return null;
     }
 
     public function __toString()

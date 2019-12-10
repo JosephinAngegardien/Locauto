@@ -8,7 +8,9 @@
 
      <h3 class="uk-card-title">{{ voiture.marque ~ " " ~ voiture.modele }}</h3>
      
+     {% if voiture.categories|length > 0 %}
      <p>Catégorie(s) : {% for cat in voiture.categories %} {{ cat }}{% endfor %}</p>
+     {% endif %}
      
                <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade">
                     <ul class="uk-slideshow-items">
@@ -28,7 +30,7 @@
 
      {% if is_granted ("ROLE_ADMIN") %}
      <div>
-          <a class="uk-button uk-button-success" href="{{path ("modif_voiture",{'slug':voiture.slug})}}">Modifier</a>
+          <a class="uk-button uk-button-default uk-margin" href="{{path ("modif_voiture",{'slug':voiture.slug})}}">Modifier</a>
      </div>
      {% endif %}
 
@@ -37,7 +39,7 @@
           <a class="uk-button uk-button-secondary uk-button-large" href="{{path ("louer_voiture",{'slug':voiture.slug})}}">Louer ce véhicule</a>
      </div>
     
-     <p class="uk-text-large">Vous avez loué ce véhicule ? A présent, dites-nous si vous avez apprécié cette aventure.</p>
+     {# <p class="uk-text-large">Vous avez loué ce véhicule ? A présent, donnez-nous votre avis.</p>
 
 
      <div>
@@ -56,8 +58,19 @@
           {% else %}
                <p>Vous devez être connecté pour commenter. <a href="{{ path('login')}}">Connectez-vous !</a></p>
           {% endif %}
-     </div>
-     <div>{% if voiture.commentaires %}
+     </div> #}
+     <div>
+          {% if voiture.commentaires | length > 0 %}
+               <div>
+                    <p>Note moyenne de ce véhicule: <span class="uk-text-success">
+                         {% set somme = 0 %}
+                         {% for commentaire in voiture.commentaires %}
+                              {% set somme = somme + commentaire.note %}
+                         {% endfor %}
+                         {% set moyenne = somme / (voiture.commentaires | length) %}
+                         {{ moyenne | round(2) }}
+                    </span>/5</p>
+               </div>
                <p class="uk-text-large">Ils ont déjà donné leur avis ...</p>
           {% endif %}
           {% for commentaire in voiture.commentaires %}

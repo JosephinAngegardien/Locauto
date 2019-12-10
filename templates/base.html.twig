@@ -16,7 +16,7 @@
     <body>
 
         {% block navigation %}
-        <header uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <header class="uk-visible@s" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
             <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
                 <div class="uk-navbar-left">
                     <div id="bloctitre">
@@ -74,7 +74,6 @@
                                 <ul class="uk-nav uk-navbar-dropdown-nav">
                                     <li><a href="{{path ("liste_voitures")}}">Tous les véhicules</a></li>
                                     <li><a href="{{path ("recherche_voitures")}}">Recherche avancée</a></li>
-                                    <li><a href="{{path ("recherche_voitures2")}}">Recherche avancée 2</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -96,6 +95,109 @@
                                     {# <li><a href="{{path ("liste_images")}}">Images disponibles</a></li>
                                     <li class="uk-nav-divider"></li> #}
                                     <li><a href="{{path ("enregistrer_voiture")}}">Enregistrer une voiture</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="{{path ("liste_utilisateurs")}}">Utilisateurs</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <header class="uk-hidden@s" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+            <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
+                <div id="bloctitre">
+                    <div class="titre uk-animation-fade uk-panel uk-padding-small">
+                        <p class="uk-text-large" id="nomdusite">Locauto</p>
+                    </div>
+                </div>
+            </nav>
+            <nav class="uk-navbar-container" uk-navbar style="position: relative; z-index: 980;">
+                <div class="uk-navbar-center">
+                    <ul class="uk-navbar-nav">
+                        <li>
+                            <a href="{{path ("accueil")}}">
+                                <span class="uk-icon uk-margin-small-right" uk-icon="icon: home"></span>
+                            </a>
+                        </li>
+                        {% if app.user %}
+                        <li class="uk-active">
+                            <a class="uk-text-lowercase" href="{{path ("logout")}}">
+                                <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span>
+                            </a>
+                        </li>
+                            {% if is_granted ("ROLE_PARTICULIER") %}
+                            <li class="uk-parent">
+                                <a><span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span></a>
+                                <div class="uk-navbar-dropdown">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li>
+                                            <a href="{{path ("modif_part")}}">Modifier mon profil</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{path ("locations_part")}}">Mes locations</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% if is_granted ("ROLE_PROFESSIONNEL") and is_granted ('ROLE_ADMIN') == false %}
+                            <li class="uk-parent">
+                                <a><span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></a>
+                                <div class="uk-navbar-dropdown">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li><a href="{{path ("modif_pro")}}">Modifier le profil</a></li>
+                                        <li><a href="{{path ("locations_pro")}}">Locations</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            {% endif %}
+                        {% else %}
+                        <li class="uk-parent">
+                            <a>Inscription</a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li><a href="{{path ("register_part")}}">Inscription particulier</a></li>
+                                    <li><a href="{{path ("register_pro")}}">Inscription professionnel</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="{{ path('login')}}">
+                                <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-in"></span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li class="uk-parent">
+                            <a>Véhicules</a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li><a href="{{path ("liste_voitures")}}">Tous les véhicules</a></li>
+                                    <li><a href="{{path ("recherche_voitures")}}">Recherche avancée</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        
+                        {% if is_granted ("ROLE_ADMIN") %}
+                        <li class="uk-parent">
+                            <a>admin</a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li><a href="{{path ("liste_agences")}}">Liste des agences</a></li>
+                                    <li><a href="{{path ("enregistrer_agence")}}">Ajouter une agence</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="{{path ("liste_marques")}}">Liste des marques</a></li>
+                                    <li><a href="{{path ("enregistrer_marque")}}">Ajouter une marque</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="{{path ("liste_categories")}}">Liste des catégories</a></li>
+                                    <li><a href="{{path ("enregistrer_categorie")}}">Ajouter une catégorie</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    {# <li><a href="{{path ("liste_images")}}">Images disponibles</a></li>
+                                    <li class="uk-nav-divider"></li> #}
+                                    <li><a href="{{path ("enregistrer_voiture")}}">Enregistrer une voiture</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="{{path ("liste_utilisateurs")}}">Utilisateurs</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -138,14 +240,11 @@
 
 
 
-{# Dans les formulaires, mettre des astérisques pour indiquer les champs obligatoires #}
-
 
 {#s @Assert\Regex(pattern="#[a-z]{1,}[A-Z]{1,}|[a-z]{1,}[1-9]{1,}|[a-z]{1,}[\#\/\+\=\&\%]{1,}|[A-Z]{1,}[1-9]{1,}|
     [A-Z]{1,}[\#\/\+\=\&\%]{1,}|[1-9]{1,}[\#\/\+\=\&\%]{1,}#", message="Le format n'est pas respecté.") #}
 
 
-{# Calendrier avec les disponibilités de la voiture #}
 
 
 

@@ -11,8 +11,17 @@
 
             <h4>Réservez le véhicule {{ voiture.reference }}, qui est une magnifique {{ voiture.marque }} {{ voiture.modele }}.</h4>
             <p>A quelles dates voudriez-vous louer le véhicule ?</p>
-            <section id="dates-reservation">
-                <div class="date-res-widget">
+
+            {% if voiture.locations | length > 0 %}
+                <p>Dates réservées :</p>
+            {% endif %}
+            
+            {% for loc in voiture.locations %}
+                <p>{{'du ' ~ loc.debut | date('d-m-Y') ~ ' au ' ~ loc.fin | date('d-m-Y') }}</p>
+            {% endfor %}
+
+            {# <section id="dates-reservation">
+                <div>
                     <div class="uk-margin">
                         {{ form_label(form.debut) }}
                     </div>
@@ -20,7 +29,7 @@
                         {{ form_widget(form.debut) }}
                     </div>
                 </div>
-                <div class="date-res-widget">
+                <div>
                     <div class="uk-margin">
                         {{ form_label(form.fin) }}
                     </div>
@@ -28,11 +37,15 @@
                         {{ form_widget(form.fin) }}
                     </div>
                 </div>
-            </section>
+            </section> #}
+
+            <div>
+                <div class="uk-margin"> {{ form_row(form.debut) }} </div>
+                <div class="uk-margin"> {{ form_row(form.fin) }} </div>
+            </div>
             
-            
-            <h5>Montant de la location : <span id="montant">...</span> &euro;</h5>
-            <span id="jours">0</span> jour(s) à {{voiture.tarif | number_format(2, ',', ' ')}} &euro; par jour.
+            {# <h5>Montant de la location : <span id="montant">...</span> &euro;</h5>
+            <span id="jours">0</span> jour(s) à {{voiture.tarif | number_format(2, ',', ' ')}} &euro; par jour. #}
 
             <button class="uk-button uk-button-default">Enregistrement</button>
             
@@ -41,11 +54,22 @@
 </div>
 {% endblock %}
 
+
+
 {% block javascripts %}
 {{ parent() }}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // you may need to change this code if you are not using Bootstrap Datepicker
+        $('.js-datepicker').datepicker({
+            format: 'dd-mm-yyyy', position: 'c'
+        });
+    });
+    </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+{#
     <script>
         $(document).ready(function(){
             $('#location_debut, #location_fin').datepicker({
@@ -90,7 +114,7 @@
             }
         }
     
-    </script>
+    </script> #}
 
 {% endblock %}
 

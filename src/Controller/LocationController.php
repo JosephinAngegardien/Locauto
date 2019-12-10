@@ -24,15 +24,12 @@ class LocationController extends AbstractController
     {
         $loc = new Location();
         $form = $this->createForm(LocationType::class, $loc);
-
-        
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
-
             $loc->setUser($user)
-                    ->setVoiture($voiture);
+                ->setVoiture($voiture);
 
             /*$loc->setMontant(et tu refais la multiplication que te fait javascript)*/
             $interval = date_diff($loc->getDebut(), $loc->getFin() );
@@ -78,8 +75,8 @@ class LocationController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $comment->setAd($loc->getAd())
-                    ->setAuthor($this->getUser());
+            $comment->setVoiture($loc->getVoiture())
+                    ->setAuteur($this->getUser());
 
             $manager->persist($comment);
             $manager->flush();

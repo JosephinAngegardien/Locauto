@@ -24,7 +24,7 @@ class CommentaireType extends ApplicationType
                     'class' => 'uk-input'
                 ]
             ]))
-            ->add('contenu', TextareaType::class, $this->getConfiguration("Donnez votre avis ", "Avez-vous apprécié les services de Locauto ?",[
+            ->add('contenu', TextareaType::class, $this->getConfiguration("Donnez votre avis ", "Que pensez-vous de ce véhicule ?",[
                 'attr' => ['class' => 'uk-input']
             ]))
            

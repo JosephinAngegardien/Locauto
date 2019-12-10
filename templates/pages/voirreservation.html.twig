@@ -11,7 +11,7 @@
     <div class="container">
         <h4 class="">Votre réservation (n° de réservation : {{location.id}})</h4>
 
-        {% if app.request.query.get('withAlert') %}
+        {% if app.request.query.get('withAlert') %}     {# app.request représente la requête en cours #}
             <div class="">
                 <h5>Votre réservation du véhicule {{ location.voiture.marque }} {{ location.voiture.modele }} a été prise en compte.</h5>
             </div>
@@ -37,7 +37,7 @@
                     </dl>
                 </div>
 
-                {# <div class="" id="">
+                <div class="" id="">
                     <h2 class="">Vous pouvez donner votre avis.</h2>
                     {% if date() > date(location.fin) %}
                         {% set commentaire = location.voiture.commentFromAuthor(app.user) %}
@@ -46,18 +46,19 @@
                                 {{commentaire.contenu}}
                             </blockquote>
 
-                            <strong>Note : </strong> {% include 'pages/notation.html.twig' with {'note': commentaire.note} %}
+                            {# <strong>Note : </strong> {% include 'pages/notation.html.twig' with {'note': commentaire.note} %} #}
+                            <strong>Note : </strong> <span class="uk-text-success">{{ commentaire.note }}</span>/5
                         {% else %}
                             {{ form_start(form) }}
                             {{ form_widget(form) }}
-                            <button type="submit" class="btn btn-success">Confirmer !</button>
+                            <button type="submit" class="uk-button uk-button-default">Confirmer</button>
                             {{ form_end(form) }}
                         {% endif %}
 
                     {% else %}
                         <p>Vous ne pourrez pas noter ce véhicule avant la fin de la location.</p>
                     {% endif %}
-                </div> #}
+                </div>
             </div>
             {# <div class="col">
                 <div class="">

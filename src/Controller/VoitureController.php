@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Voiture;
 use App\Data\SearchData;
+use App\Entity\Location;
 use App\Form\SearchForm;
 use App\Form\VoitureType;
 use App\Entity\Commentaire;
@@ -18,6 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\BrowserKit\Response as SymfonyResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class VoitureController extends AbstractController
 {
@@ -60,7 +62,7 @@ class VoitureController extends AbstractController
         if($this->getUser()){
             $newComment = new Commentaire();
             $newComment->setVoiture($voiture);
-            $newComment->setAuteur($this->getUser());
+            $newComment->setAuteur($this->getUser());   // L'utilisateur connecté peut donner son avis sur le véhicule, qu'il l'ai loué ou non (problème).
             $form = $this->createForm(CommentaireType::class, $newComment);
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()){
@@ -75,9 +77,9 @@ class VoitureController extends AbstractController
     
                 return $this->redirectToRoute('voir_voiture', ['slug' => $voiture->getSlug()]);
             }
-            $form = $form->createView();
+            $form = $form->createView();    // Si aucun formulaire n'a encore été validé, on en crée un.
         }
-        else $form = null;
+        else $form = null;      // Pas d'utilisateur ? Pas de formulaire.
 
         return $this->render('voitures/voirvoiture.html.twig', [
             'voiture' => $voiture,

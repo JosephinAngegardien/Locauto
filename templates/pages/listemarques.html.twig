@@ -5,14 +5,14 @@
 
 {% block body %}
 
-<div class="uk-card uk-card-body uk-text-center uk-padding uk-width-1-2 centrer">
-    <h2>Liste des marques</h2>
+<div class="uk-card uk-card-body uk-card-default uk-text-center uk-padding uk-width-1-1 colorer">
+    <h2>Marques de véhicules</h2>
 </div>
 
-<div uk-grid>
+<div class="uk-grid-collapse" uk-grid>
 
         {% for marque in marques %}
-        <div class="uk-card uk-card-default uk-card-body uk-text-center uk-width-1-6">
+        <div class="uk-card uk-card-default uk-card-body uk-text-center uk-width-1-6@m">
             <div>
                 <h3>{{ marque.nom|e }}</h3>
             </div>

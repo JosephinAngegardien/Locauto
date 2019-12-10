@@ -6,8 +6,6 @@
 }
 #bloctitre{
     padding-left: 4vw;
-    /* padding-top: 1em;
-    padding-bottom: 1em; */
 }
 body{
     background-image: url("/images/route1.jpg");
@@ -29,6 +27,9 @@ body{
     margin-top: 3em;
     border-radius: 0.8em;
 }
+.colorer{
+    background-image: linear-gradient(darkkhaki, cornsilk);
+}
 
 #dates-reservation{
     display: flex;
@@ -36,92 +37,86 @@ body{
     justify-content: space-evenly;
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1200px) {
     #nomdusite{
         font-family: 'Courgette', cursive;
         font-size: 2em;
-        /* color: transparent; */
+    }
+    #bloctitre{
+        padding-left: 0;
+    }
+    .centrer{
+        margin:auto;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        width: 60%;
+        border-radius: 0.8em;
+        background-color: cornsilk;
     }
     .centrer2{
         margin:auto;
-        margin-top: 12vh;
+        margin-top: 6vh;
+        width: 80%;
         border-radius: 0.8em;
     }
 
 }
 
-@media screen and (max-width: 985px) {
+@media screen and (max-width: 960px) {
     #nomdusite{
         font-family: 'Courgette', cursive;
         font-size: 1em;
-        /* color: transparent; */
+    }
+    #bloctitre{
+        padding-left: 0;
+    }
+    .centrer{
+        margin:auto;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        width: 80%;
+        border-radius: 0.8em;
+        background-color: cornsilk;
+    }
+    .centrer2{
+        margin:auto;
+        margin-top: 6vh;
+        width: 80%;
+        border-radius: 0.8em;
     }
 
 }
 
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 640px) {
     #nomdusite{
         font-family: 'Courgette', cursive;
-        color: transparent;
+        font-size: 2em;
+    }
+    .centrer{
+        margin:auto;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        width: 100%;
+        border-radius: 0.8em;
+        background-color: cornsilk;
+    }
+    .centrer2{
+        margin:auto;
+        margin-top: 1em;
+        width: 100%;
+        border-radius: 0.5em;
+        background-color: cornsilk;
     }
 
+
 }
 
 
 
 
-/* #bodybase{
-    margin: 0;
-    padding: 0;
-}
-#zone1{
-    height: 100vh;
-    width: 100%;
-    background-image: url("/images/route1.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-#zone2{
-    height: 100vh;
-    width: 100%;
-    background-image: url("/images/route1.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-.titre{
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2em;
-    border: 1px solid black;
-    border-radius: 1em;
-    text-align: center;
-}
-.formulaire{
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2em;
-    border: 1px solid black;
-    background-color: ghostwhite;
-    border-radius: 1em;
-    text-align: center;
-    padding: 0.5em;
-}
-.formavecjs{
-    width: 50%;
-    height: 30em;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2em;
-    border: 1px solid black;
-    background-color: ghostwhite;
-    border-radius: 1em;
-    text-align: center;
-    padding: 0.5em;
-} */
+
+
+
 
 
 

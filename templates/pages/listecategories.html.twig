@@ -5,13 +5,13 @@
 
 {% block body %}
 
-<div class="uk-card uk-card-default uk-padding uk-text-center uk-width-1-4 centrer">
-    <h3>Catégories de véhicules</h3>
+<div class="uk-card uk-card-default uk-padding uk-text-center uk-width-1-1 colorer">
+    <h2>Catégories de véhicules</h2>
 </div>
 
-<div uk-grid>
+<div class="uk-grid-collapse" uk-grid>
         {% for categorie in categories %}
-        <div class="uk-card uk-card-default uk-card-body uk-text-center uk-padding uk-width-1-6">
+        <div class="uk-card uk-card-default uk-card-body uk-text-center uk-padding uk-width-1-6@m">
             <div>
                 <h4>{{ categorie.nom|e }}</h4>
             </div>

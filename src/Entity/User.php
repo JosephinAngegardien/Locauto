@@ -12,12 +12,14 @@ use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @InheritanceType("SINGLE_TABLE")
  * @DiscriminatorColumn(name="discr", type="string")
  * @DiscriminatorMap({"user" = "User", "particulier" = "Particulier", "professionnel" = "Professionnel"})
+ * @UniqueEntity("email", message="Cette adresse est déjà utilisée.")
  */
 class User implements UserInterface
 {
@@ -30,6 +32,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email
      */
     private $email;
 

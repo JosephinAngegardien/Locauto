@@ -216,7 +216,7 @@ class GeneralController extends AbstractController
 
             $this->addFlash(
                 'Avertissement',
-                "La catégorie {$categorie->getNom()} a bien été enregistrée !"
+                "La catégorie « {$categorie->getNom()} » a bien été enregistrée !"
             );
 
             return $this->redirectToRoute('liste_categories');

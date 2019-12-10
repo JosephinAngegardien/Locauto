@@ -7,6 +7,8 @@ use App\Entity\Voiture;
 use App\Entity\VoitureSearch;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Query\QueryBuilder;
+use Doctrine\ORM\Query;
 
 /**
  * @method Voiture|null find($id, $lockMode = null, $lockVersion = null)
@@ -43,6 +45,10 @@ class VoitureRepository extends ServiceEntityRepository
             $qb->innerJoin('v.categories', 'c', 'WITH', 'c = :cat')
                ->setParameter('cat', $categorie);
         }
+        // if($categorie){
+        //     $qb->andWhere('v.categories IN (:cat)')
+        //        ->setParameter('cat', $categorie);
+        // }
         if($maxTarif){
             $qb->andWhere('v.tarif <= :mxt')
                 ->setParameter('mxt', $maxTarif);
@@ -54,10 +60,53 @@ class VoitureRepository extends ServiceEntityRepository
             
         $qb->orderBy('v.marque', 'ASC');
 
-        return $qb->getQuery()
-                  ->getResult()
-        ;
+        return $qb->getQuery()->getResult();
+
     }
+
+
+    
+    // /**
+    //  *@return Voiture[]
+    //  */
+    // public function findSearch(SearchData $search): array
+    // {
+
+    //     $query = $this
+    //         ->createQueryBuilder('p')
+    //         ->select('c', 'p')
+    //         ->join('p.categories', 'c')
+    //     ;
+    //     if(!empty($search->q)){
+    //         $query = $query
+    //                     ->andWhere('p.marque LIKE :q')
+    //                     ->setParameter('q', "%{$search->q}%")
+    //     ;
+    //     }
+    //     if(!empty($search->min)){
+    //         $query = $query
+    //                     ->andWhere('p.tarif >= :min')
+    //                     ->setParameter('min', $search->min)
+    //     ;
+    //     }
+    //     if(!empty($search->max)){
+    //         $query = $query
+    //                     ->andWhere('p.tarif <= :max')
+    //                     ->setParameter('max', $search->max)
+    //     ;
+    //     }
+    //     if(!empty($search->categories)){
+    //         $query = $query
+    //                     ->andWhere('c.id IN (:categories)')
+    //                     ->setParameter('categories', $search->categories)
+    //     ;
+    //     }
+
+    //     return $query->getQuery()->getResult();
+
+    // }
+
+
 
     /**
      * @return Voiture[]
@@ -78,54 +127,22 @@ class VoitureRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Voiture[]
+    //  * @return Query
     //  */
-    // public function voituresHasard(): array
+    // public function paginer(): Query
     // {
-        
-
-
+    //     return $this->findVisibleQuery();
+    //                 ->getQuery();
     // }
 
-    /**
-     *@return Voiture[]
-     */
-    public function findSearch(SearchData $search): array
-    {
+    // private function findVisibleQuery(): QueryBuilder
+    // {
+    //     return $this->createQueryBuilder('p');
+    //                 ->andWhere('p.sold=false');
+    // }
 
-        $query = $this
-            ->createQueryBuilder('p')
-            ->select('c', 'p')
-            ->join('p.categories', 'c')
-        ;
-        if(!empty($search->q)){
-            $query = $query
-                        ->andWhere('p.marque LIKE :q')
-                        ->setParameter('q', "%{$search->q}%")
-        ;
-        }
-        if(!empty($search->min)){
-            $query = $query
-                        ->andWhere('p.tarif >= :min')
-                        ->setParameter('min', $search->min)
-        ;
-        }
-        if(!empty($search->max)){
-            $query = $query
-                        ->andWhere('p.tarif <= :max')
-                        ->setParameter('max', $search->max)
-        ;
-        }
-        if(!empty($search->categories)){
-            $query = $query
-                        ->andWhere('c.id IN (:categories)')
-                        ->setParameter('categories', $search->categories)
-        ;
-        }
 
-        return $query->getQuery()->getResult();
 
-    }
 
 
     // /**
