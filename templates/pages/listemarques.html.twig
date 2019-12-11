@@ -29,6 +29,9 @@
                 <p>{{ marque.voitures|length }} véhicules</p>
             </div>
             {% endif %}
+            <div>
+                <a class="uk-button uk-button-default uk-button-small uk-margin" href="{{ path ("modif_marque",{'slug':marque.slug}) }}">Modifier</a>
+            </div>
             {% if marque.voitures|length == 0 %}
             <div>
                 <a class="uk-button uk-button-danger uk-button-small" href="{{ path ("supprimer_marque",{'slug':marque.slug}) }}" onclick="return confirm('Supprimer ?')">Supprimer</a>

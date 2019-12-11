@@ -38,8 +38,8 @@
                 </div>
 
                 <div class="" id="">
-                    <h2 class="">Vous pouvez donner votre avis.</h2>
                     {% if date() > date(location.fin) %}
+                        <h3 class="">Vous pouvez donner votre avis.</h3>
                         {% set commentaire = location.voiture.commentFromAuthor(app.user) %}
                         {% if commentaire is not null %}
                             <blockquote>
@@ -51,7 +51,7 @@
                         {% else %}
                             {{ form_start(form) }}
                             {{ form_widget(form) }}
-                            <button type="submit" class="uk-button uk-button-default">Confirmer</button>
+                            <button type="submit" class="uk-button uk-button-default uk-margin">Confirmer</button>
                             {{ form_end(form) }}
                         {% endif %}
 

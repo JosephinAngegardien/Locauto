@@ -190,7 +190,7 @@ class SecurityController extends AbstractController
      */
     public function listeUtilisateurs() {
 
-        $utilisateurs = $this->getDoctrine()->getRepository(User::class)->findAll();
+        $utilisateurs = $this->getDoctrine()->getRepository(User::class)->findBy([], ["username"=>"DESC"]);
 
         return $this->render('/security/listutilisateurs.html.twig', ['utilisateurs' => $utilisateurs]);
     }

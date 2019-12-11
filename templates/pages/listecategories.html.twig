@@ -16,6 +16,9 @@
                 <h4>{{ categorie.nom|e }}</h4>
             </div>
             <div>
+                <a class="uk-button uk-button-default uk-margin" href="{{ path ("modif_categorie",{'id':categorie.id}) }}">Modifier</a>
+            </div>
+            <div>
                 <a class="uk-button uk-button-danger uk-button-small" href="{{ path ("supprimer_categorie",{'id':categorie.id}) }}" onclick="confirm('Supprimer ?')">Supprimer</a>
             </div>
         </div>

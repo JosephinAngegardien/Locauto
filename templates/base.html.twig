@@ -39,7 +39,7 @@
                                 <a>Mon compte</a>
                                 <div class="uk-navbar-dropdown">
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
-                                        <li><a href="{{path ("modif_part")}}">Modifier mon profil</a></li>
+                                        <li><a href="{{path ("modif_part")}}"> {{ app.user.username }} - modifier mon profil</a></li>
                                         <li><a href="{{path ("locations_part")}}">Mes locations</a></li>
                                     </ul>
                                 </div>
@@ -50,7 +50,7 @@
                                 <a>Voir compte</a>
                                 <div class="uk-navbar-dropdown">
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
-                                        <li><a href="{{path ("modif_pro")}}">Modifier le profil</a></li>
+                                        <li><a href="{{path ("modif_pro")}}"> {{ app.user.username }} - modifier le profil</a></li>
                                         <li><a href="{{path ("locations_pro")}}">Locations</a></li>
                                     </ul>
                                 </div>

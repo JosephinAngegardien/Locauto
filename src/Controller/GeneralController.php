@@ -67,6 +67,25 @@ class GeneralController extends AbstractController
     }
 
     /**
+     * @Route("/modifagence/{id}", name="modif_agence")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function modifierAgence(Agence $agence, Request $request, ObjectManager $manager){
+        
+        $form=$this->createForm(AgenceType::class, $agence);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($agence);
+            $manager->flush();
+
+            return $this->redirectToRoute('liste_agences', ['id' => $agence->getId()]);
+        }
+
+        return $this->render('pages/enregistreragence.html.twig', ['form' => $form->createView(), 'agence' => $agence]);
+    }
+
+    /**
      * @Route("/supprimeragence/{id}", name="supprimer_agence")
      * @IsGranted("ROLE_ADMIN")
      */
@@ -122,6 +141,25 @@ class GeneralController extends AbstractController
         $marques = $this->getDoctrine()->getRepository(Marque::class)->findBy([], ["nom"=>"ASC"]);
 
         return $this->render('/pages/listemarques.html.twig', ['marques' => $marques]);
+    }
+
+    /**
+     * @Route("/modifmarque/{slug}", name="modif_marque")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function modifierMarque(Marque $marque, Request $request, ObjectManager $manager){
+        
+        $form=$this->createForm(MarqueType::class, $marque);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($marque);
+            $manager->flush();
+
+            return $this->redirectToRoute('liste_marques', ['slug' => $marque->getSlug()]);
+        }
+
+        return $this->render('pages/enregistrermarque.html.twig', ['form' => $form->createView(), 'marque' => $marque]);
     }
 
     /**
@@ -233,9 +271,28 @@ class GeneralController extends AbstractController
      */
     public function listeCategories() {
 
-        $categories = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
+        $categories = $this->getDoctrine()->getRepository(Categorie::class)->findBy([], ["nom"=>"ASC"]);
 
         return $this->render('/pages/listecategories.html.twig', ['categories' => $categories]);
+    }
+
+    /**
+     * @Route("/modifcategorie/{id}", name="modif_categorie")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function modifierCategorie(Categorie $categorie, Request $request, ObjectManager $manager){
+        
+        $form=$this->createForm(CategorieFormType::class, $categorie);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($categorie);
+            $manager->flush();
+
+            return $this->redirectToRoute('liste_categories', ['id' => $categorie->getId()]);
+        }
+
+        return $this->render('pages/enregistrercategorie.html.twig', ['form' => $form->createView(), 'categorie' => $categorie]);
     }
 
     /**

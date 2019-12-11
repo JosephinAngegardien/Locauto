@@ -102,9 +102,16 @@ class VoitureController extends AbstractController
      */
     public function supprVoiture(Voiture $voiture, ObjectManager $manager) {
 
+        if(is_null($voiture->getImages()) )
+        {
         $manager->remove($voiture);
         $manager->flush();
   
+        return $this->redirectToRoute('liste_voitures');
+        }
+        $this->addFlash(
+            'Avertissement',
+            "La fiche de ce véhicule ne peut être supprimée.");
         return $this->redirectToRoute('liste_voitures');
     }
 
@@ -143,6 +150,13 @@ class VoitureController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
                
             $voitures = $em->getRepository(Voiture::class)->findVoituresBySearch($search);
+
+            if(empty($voitures)){
+
+                $this->addFlash(
+                    'Avertissement',
+                    "Aucun véhicule ne correspond à vos critères de recherche.");
+            }
 
         }
 
