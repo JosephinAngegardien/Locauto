@@ -111,7 +111,7 @@ class VoitureRepository extends ServiceEntityRepository
     /**
      * @return Voiture[]
      */
-    public function voituresMarquesClassees(): array    //Méthode qui utilise le DQL
+    public function voituresMarquesClassees(): array
     {
         $entityManager = $this->getEntityManager();
 
